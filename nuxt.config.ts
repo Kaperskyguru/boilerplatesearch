@@ -2,8 +2,11 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
-
   ssr: true,
+
+  content: {
+    // ... options
+  },
 
   postcss: {
     plugins: {
@@ -11,4 +14,6 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+
+  modules: ["@nuxt/content"],
 });

@@ -20,203 +20,181 @@
                 <div class="flex items-center gap-3 py-3">
                   <div class="flex h-6 items-center">
                     <input
-                      id="beginners"
-                      name="level"
-                      @change="onSkillFilter"
-                      v-model="skill"
-                      value="beginners"
-                      type="radio"
+                      id="astro"
+                      name="astro"
+                      v-model="techs"
+                      value="astro"
+                      type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="beginners" class="font-medium">Astro</label>
+                    <label for="astro" class="font-medium">Astro</label>
                   </div>
                 </div>
                 <div class="relative flex gap-x-3 py-3">
                   <div class="flex h-6 items-center">
                     <input
-                      id="intermediate"
-                      name="level"
-                      @change="onSkillFilter"
-                      v-model="skill"
-                      value="intermediate"
-                      type="radio"
+                      id="vue"
+                      name="vue"
+                      v-model="techs"
+                      value="vue"
+                      type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="intermediate" class="font-medium">Vue</label>
+                    <label for="vue" class="font-medium">Vue</label>
                   </div>
                 </div>
                 <div class="relative flex gap-x-3 py-3">
                   <div class="flex h-6 items-center">
                     <input
-                      id="intermediate"
-                      name="level"
-                      @change="onSkillFilter"
-                      v-model="skill"
-                      value="intermediate"
-                      type="radio"
+                      id="tailwind"
+                      name="tailwind"
+                      v-model="techs"
+                      value="tailwind"
+                      type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="intermediate" class="font-medium"
-                      >Tailwind</label
-                    >
+                    <label for="tailwind" class="font-medium">Tailwind</label>
                   </div>
                 </div>
                 <div class="relative flex gap-x-3 py-3">
                   <div class="flex h-6 items-center">
                     <input
-                      id="intermediate"
-                      name="level"
-                      @change="onSkillFilter"
-                      v-model="skill"
-                      value="intermediate"
-                      type="radio"
+                      id="swiftui"
+                      name="swiftui"
+                      value="swiftui"
+                      v-model="techs"
+                      type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="intermediate" class="font-medium"
-                      >SwiftUI</label
-                    >
+                    <label for="swiftui" class="font-medium">SwiftUI</label>
                   </div>
                 </div>
                 <div class="relative flex gap-x-3 py-3">
                   <div class="flex h-6 items-center">
                     <input
-                      id="intermediate"
-                      name="level"
-                      @change="onSkillFilter"
-                      v-model="skill"
-                      value="intermediate"
-                      type="radio"
+                      id="sveltekit"
+                      name="sveltekit"
+                      value="svelte"
+                      v-model="techs"
+                      type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="intermediate" class="font-medium"
-                      >SvelteKit</label
-                    >
+                    <label for="sveltekit" class="font-medium">SvelteKit</label>
                   </div>
                 </div>
                 <div class="relative flex gap-x-3 py-3">
                   <div class="flex h-6 items-center">
                     <input
-                      id="intermediate"
-                      name="level"
-                      @change="onSkillFilter"
-                      v-model="skill"
-                      value="intermediate"
-                      type="radio"
+                      id="react"
+                      name="react"
+                      v-model="techs"
+                      value="react"
+                      type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="intermediate" class="font-medium">React</label>
+                    <label for="react" class="font-medium">React</label>
                   </div>
                 </div>
                 <div class="relative flex gap-x-3 py-3">
                   <div class="flex h-6 items-center">
                     <input
-                      id="intermediate"
-                      name="level"
-                      @change="onSkillFilter"
-                      v-model="skill"
-                      value="intermediate"
-                      type="radio"
+                      id="php"
+                      name="php"
+                      value="php"
+                      v-model="techs"
+                      type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="intermediate" class="font-medium">PHP</label>
+                    <label for="php" class="font-medium">PHP</label>
                   </div>
                 </div>
                 <div class="relative flex gap-x-3 py-3">
                   <div class="flex h-6 items-center">
                     <input
-                      id="intermediate"
-                      name="level"
-                      @change="onSkillFilter"
-                      v-model="skill"
-                      value="intermediate"
-                      type="radio"
+                      id="nuxt"
+                      name="nuxt"
+                      v-model="techs"
+                      value="nuxt"
+                      type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="intermediate" class="font-medium">Nuxt</label>
+                    <label for="nuxt" class="font-medium">Nuxt</label>
                   </div>
                 </div>
                 <div class="relative flex gap-x-3 py-3">
                   <div class="flex h-6 items-center">
                     <input
-                      id="intermediate"
-                      name="level"
-                      @change="onSkillFilter"
-                      v-model="skill"
-                      value="intermediate"
-                      type="radio"
+                      id="nextjs"
+                      name="nextjs"
+                      v-model="techs"
+                      value="nextjs"
+                      type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="intermediate" class="font-medium">NextJS</label>
+                    <label for="nextjs" class="font-medium">NextJS</label>
                   </div>
                 </div>
                 <div class="relative flex gap-x-3 py-3">
                   <div class="flex h-6 items-center">
                     <input
-                      id="intermediate"
-                      name="level"
-                      @change="onSkillFilter"
-                      v-model="skill"
-                      value="intermediate"
-                      type="radio"
+                      id="laravel"
+                      name="laravel"
+                      v-model="techs"
+                      value="laravel"
+                      type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="intermediate" class="font-medium"
-                      >Laravel</label
-                    >
+                    <label for="laravel" class="font-medium">Laravel</label>
                   </div>
                 </div>
                 <div class="relative flex gap-x-3 py-3">
                   <div class="flex h-6 items-center">
                     <input
-                      id="intermediate"
-                      name="level"
-                      @change="onSkillFilter"
-                      v-model="skill"
-                      value="intermediate"
-                      type="radio"
+                      id="inertia"
+                      name="inertia"
+                      value="inertia"
+                      v-model="techs"
+                      type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="intermediate" class="font-medium"
-                      >Inertia.js</label
-                    >
+                    <label for="inertia" class="font-medium">Inertia.js</label>
                   </div>
                 </div>
                 <div class="relative flex gap-x-3 py-3">
                   <div class="flex h-6 items-center">
                     <input
-                      id="advanced"
-                      value="advanced"
-                      name="level"
-                      @change="onSkillFilter"
-                      v-model="skill"
-                      type="radio"
+                      id="jetstream"
+                      value="jetstream"
+                      v-model="techs"
+                      name="jetstream"
+                      type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="advanced" class="font-medium">Jetstream</label>
+                    <label for="jetstream" class="font-medium">Jetstream</label>
                   </div>
                 </div>
               </div>
@@ -235,135 +213,121 @@
                 <div class="flex gap-3 py-2">
                   <div class="flex h-6 items-center">
                     <input
-                      id="free"
-                      value="free"
-                      name="premium"
-                      v-model="free"
-                      @change="onFreeFilter"
+                      id="auth"
+                      value="auth"
+                      v-model="tags"
                       type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="free" class="font-medium">Auth</label>
+                    <label for="auth" class="font-medium">Auth</label>
                   </div>
                 </div>
                 <div class="relative flex gap-3 py-2">
                   <div class="flex h-6 items-center">
                     <input
-                      id="paid"
-                      value="paid"
-                      name="premium"
-                      @change="onPaidFilter"
-                      v-model="premium"
+                      id="community"
+                      value="community"
+                      v-model="tags"
                       type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="paid" class="font-medium">Community</label>
+                    <label for="community" class="font-medium">Community</label>
                   </div>
                 </div>
 
                 <div class="relative flex gap-3 py-2">
                   <div class="flex h-6 items-center">
                     <input
-                      id="paid"
-                      value="paid"
-                      name="premium"
-                      @change="onPaidFilter"
-                      v-model="premium"
+                      id="updates"
+                      value="updates"
+                      v-model="tags"
                       type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="paid" class="font-medium">Updates</label>
+                    <label for="updates" class="font-medium">Updates</label>
                   </div>
                 </div>
 
                 <div class="relative flex gap-3 py-2">
                   <div class="flex h-6 items-center">
                     <input
-                      id="paid"
-                      value="paid"
-                      name="premium"
-                      @change="onPaidFilter"
-                      v-model="premium"
+                      id="stripe"
+                      value="stripe"
+                      v-model="tags"
                       type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="paid" class="font-medium">Stripe</label>
+                    <label for="stripe" class="font-medium">Stripe</label>
                   </div>
                 </div>
 
                 <div class="relative flex gap-3 py-2">
                   <div class="flex h-6 items-center">
                     <input
-                      id="paid"
-                      value="paid"
-                      name="premium"
-                      @change="onPaidFilter"
-                      v-model="premium"
+                      id="seo"
+                      value="seo"
+                      v-model="tags"
                       type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="paid" class="font-medium">SEO</label>
+                    <label for="seo" class="font-medium">SEO</label>
                   </div>
                 </div>
 
                 <div class="relative flex gap-3 py-2">
                   <div class="flex h-6 items-center">
                     <input
-                      id="paid"
-                      value="paid"
-                      name="premium"
-                      @change="onPaidFilter"
-                      v-model="premium"
+                      id="email"
+                      value="email"
+                      v-model="tags"
                       type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="paid" class="font-medium">Email</label>
+                    <label for="email" class="font-medium">Email</label>
                   </div>
                 </div>
 
                 <div class="relative flex gap-3 py-2">
                   <div class="flex h-6 items-center">
                     <input
-                      id="paid"
-                      value="paid"
-                      name="premium"
-                      @change="onPaidFilter"
-                      v-model="premium"
+                      id="database"
+                      value="database"
+                      v-model="tags"
                       type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="paid" class="font-medium">Database</label>
+                    <label for="database" class="font-medium">Database</label>
                   </div>
                 </div>
 
                 <div class="relative flex gap-3 py-2">
                   <div class="flex h-6 items-center">
                     <input
-                      id="paid"
-                      value="paid"
-                      name="premium"
-                      @change="onPaidFilter"
-                      v-model="premium"
+                      id="components"
+                      value="components"
+                      v-model="tags"
                       type="checkbox"
                       class="h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div class="text-sm leading-6">
-                    <label for="paid" class="font-medium">Components</label>
+                    <label for="components" class="font-medium"
+                      >Components</label
+                    >
                   </div>
                 </div>
               </div>
@@ -376,29 +340,32 @@
 </template>
   
   <script setup>
-const skill = ref("");
-const premium = ref("");
-const free = ref("");
+const techs = ref([]);
+const tags = ref([]);
 
-const emit = defineEmits(["skillFilter", "skillPremium"]);
+const emit = defineEmits(["filter", "skillPremium"]);
 
-function onSkillFilter() {
-  emit("skillFilter", {
-    skill: skill.value,
-  });
-}
+watch(
+  () => techs.value,
+  () => {
+    emit("filter", {
+      tech: techs.value,
+      tags: tags.value,
+    });
+  },
+  { deep: true }
+);
 
-function onPaidFilter() {
-  emit("skillPremium", {
-    paid: premium.value,
-  });
-}
-
-function onFreeFilter() {
-  emit("skillPremium", {
-    free: free.value,
-  });
-}
+watch(
+  () => tags.value,
+  () => {
+    emit("filter", {
+      tech: techs.value,
+      tags: tags.value,
+    });
+  },
+  { deep: true }
+);
 </script>
   
   <style>

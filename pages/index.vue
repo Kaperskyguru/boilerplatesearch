@@ -29,7 +29,7 @@
             <input
               type="text"
               id="default-search"
-              @input="onSearch"
+              v-model="search"
               class="block p-3 !w-full rounded-full focus:outline-none w-full p-4 ps-10 text-sm border rounded-full bg-black border-gray-600 placeholder-white text-white"
               placeholder="Search boilerplates"
             />
@@ -43,7 +43,7 @@
       :options="{ defaultTabHash: 'all', useUrlFragment: true }"
       cache-lifetime="0"
     >
-      <tab id="all" :name="`All (${0})`">
+      <tab id="all" :name="`All (${boilerplates?.length})`">
         <div class="w-ful shadow bg-black py-5">
           <div class="fle w-full">
             <div class="w-11/12 mx-auto pt-5">
@@ -51,7 +51,7 @@
                 <div
                   class="w-1/5 h-full bg-black border border-gray-700 text-white"
                 >
-                  <Filter />
+                  <Filter @filter="onFilter" />
                 </div>
                 <div>
                   <div class="flex justify-between pb-5">
@@ -72,17 +72,11 @@
                   <div
                     class="flex justify-start flex-col w-full lg:grid lg:grid-cols-3 gap-5"
                   >
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
+                    <Boilerplate
+                      :item="boilerplate"
+                      v-for="(boilerplate, i) in boilerplates"
+                      :key="i"
+                    />
                   </div>
                 </div>
               </div>
@@ -90,7 +84,7 @@
           </div>
         </div>
       </tab>
-      <tab id="latest" :name="`Latest (${0})`">
+      <tab id="latest" :name="`Latest (${boilerplates?.length})`">
         <div class="w-ful shadow bg-black py-5">
           <div class="fle w-full">
             <div class="w-11/12 mx-auto pt-5">
@@ -98,12 +92,12 @@
                 <div
                   class="w-1/5 h-full bg-black border border-gray-700 text-white"
                 >
-                  <Filter />
+                  <Filter @filter="onFilter" />
                 </div>
                 <div>
                   <div class="flex justify-between pb-5">
                     <div>
-                      <h2 class="font-blod text-2xl">All Boilerplates</h2>
+                      <h2 class="font-blod text-2xl">Latest Boilerplates</h2>
                     </div>
                     <button
                       data-tally-open="3xpAZ9"
@@ -119,17 +113,11 @@
                   <div
                     class="flex justify-start flex-col w-full lg:grid lg:grid-cols-3 gap-5"
                   >
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
+                    <Boilerplate
+                      :item="boilerplate"
+                      v-for="(boilerplate, i) in boilerplates"
+                      :key="i"
+                    />
                   </div>
                 </div>
               </div>
@@ -137,7 +125,7 @@
           </div>
         </div>
       </tab>
-      <tab id="popular" :name="`Popular (${0})`">
+      <tab id="popular" :name="`Popular (${popular?.length})`">
         <div class="w-ful shadow bg-black py-5">
           <div class="fle w-full">
             <div class="w-11/12 mx-auto pt-5">
@@ -145,12 +133,12 @@
                 <div
                   class="w-1/5 h-full bg-black border border-gray-700 text-white"
                 >
-                  <Filter />
+                  <Filter @filter="onFilter" />
                 </div>
                 <div>
                   <div class="flex justify-between pb-5">
                     <div>
-                      <h2 class="font-blod text-2xl">All Boilerplates</h2>
+                      <h2 class="font-blod text-2xl">Popular Boilerplates</h2>
                     </div>
                     <button
                       data-tally-open="3xpAZ9"
@@ -166,17 +154,11 @@
                   <div
                     class="flex justify-start flex-col w-full lg:grid lg:grid-cols-3 gap-5"
                   >
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
+                    <Boilerplate
+                      :item="boilerplate"
+                      v-for="(boilerplate, i) in popular"
+                      :key="i"
+                    />
                   </div>
                 </div>
               </div>
@@ -184,7 +166,7 @@
           </div>
         </div>
       </tab>
-      <tab id="trending" :name="`Trending (${0})`">
+      <tab id="trending" :name="`Trending (${trending?.length})`">
         <div class="w-ful shadow bg-black py-5">
           <div class="fle w-full">
             <div class="w-11/12 mx-auto pt-5">
@@ -192,12 +174,12 @@
                 <div
                   class="w-1/5 h-full bg-black border border-gray-700 text-white"
                 >
-                  <Filter />
+                  <Filter @filter="onFilter" />
                 </div>
                 <div>
                   <div class="flex justify-between pb-5">
                     <div>
-                      <h2 class="font-blod text-2xl">All Boilerplates</h2>
+                      <h2 class="font-blod text-2xl">Trending Boilerplates</h2>
                     </div>
                     <button
                       data-tally-open="3xpAZ9"
@@ -213,32 +195,55 @@
                   <div
                     class="flex justify-start flex-col w-full lg:grid lg:grid-cols-3 gap-5"
                   >
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
-
-                    <Boilerplate />
+                    <Boilerplate
+                      :item="boilerplate"
+                      v-for="(boilerplate, i) in trending"
+                      :key="i"
+                    />
                   </div>
                 </div>
               </div>
             </div>
-          </div></div
-      ></tab>
+          </div>
+        </div>
+      </tab>
     </tabs>
   </div>
 </template>
 
-<script>
+<script setup>
 import Boilerplate from "../components/Boilerplate.vue";
-export default {
-  components: { Boilerplate },
-};
+const boilerplates = ref([]);
+const trending = ref([]);
+const popular = ref([]);
+const search = ref("");
+
+async function allBoilerplates() {
+  const all = await queryContent("boilerplates").find();
+  boilerplates.value = all;
+}
+
+async function trendingBoilerplates() {
+  const all = await queryContent("boilerplates")
+    .where({ isTrending: true })
+    .find();
+  trending.value = all;
+}
+
+async function popularBoilerplates() {
+  const all = await queryContent("boilerplates")
+    .where({ isPopular: true })
+    .find();
+  popular.value = all;
+}
+
+allBoilerplates();
+trendingBoilerplates();
+popularBoilerplates();
+
+function onFilter(filter) {
+  console.log(filter);
+}
 </script>
 
 <style>
