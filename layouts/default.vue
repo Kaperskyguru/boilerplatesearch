@@ -1,0 +1,35 @@
+<template>
+  <main class="bg-black w-full text-white">
+    <div class="flex flex-col items-center justify-center pt-10">
+      <h1
+        class="max-w-4xl text-center text-5xl font-bold md:text-6xl lg:text-7xl bg-clip-text text-transparent bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500"
+      >
+        <a href="/"> Boilerplate Search </a>
+      </h1>
+      <p class="text-light-100 mt-5 max-w-xl text-center">
+        A one-stop-shop for your boilerplate search for your next project.
+      </p>
+      <a class="py-3 font-bold" href="/blog"
+        >Why use boilerplatess? Visit our blog</a
+      >
+    </div>
+    <slot />
+
+    <footer class="py-20 flex justify-center">
+      <p>
+        Built and curated by
+        <a
+          class="underline text-gray-300"
+          href="https://twitter.com/kaperskyguru"
+          >Solomon Eseme</a
+        >.
+      </p>
+    </footer>
+  </main>
+</template>
+
+<script setup>
+</script>
+
+<style>
+</style>

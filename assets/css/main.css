@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tabs-component-tabs {
+  align-items: stretch;
+  display: flex;
+  @apply flex-col lg:flex-row;
+}
+
+@media (min-width: 700px) {
+  .tabs-component-tabs {
+    border: 0;
+    align-items: stretch;
+    display: flex;
+    justify-content: center;
+    margin-bottom: -1px;
+  }
+}
+
+.tabs-component-tab,
+.tabs-component-tab--custom {
+  color: #999;
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 0;
+  list-style: none;
+}
+
+.tabs-component-tab:hover {
+  color: #666;
+  background-color: #c1c2c630;
+}
+
+.tabs-component-tab.is-active {
+  color: #fff;
+}
+
+.tabs-component-tab.is-disabled *,
+.tabs-component-tab--custom.is-disabled * {
+  color: #cdcdcd;
+  cursor: not-allowed !important;
+}
+
+.tabs-component-tab,
+.tabs-component-tab--custom {
+  border-radius: 3px 3px 0 0;
+  margin-right: 0.5em;
+  transform: translateY(2px);
+  transition: transform 0.3s ease;
+  /* @apply xs:px-2 sm:px-5; */
+}
+
+@media (min-width: 700px) {
+  .tabs-component-tab,
+  .tabs-component-tab--custom {
+    margin-right: 0.5em;
+    padding: 0rem 3rem;
+  }
+}
+
+.tabs-component-tab.is-active,
+.tabs-component-tab--custom.is-active {
+  border-bottom: solid 3px #fff;
+  z-index: 2;
+  transform: translateY(0);
+}
+
+.tabs-component-tab-a,
+.tabs-component-tab-a--custom {
+  align-items: center;
+  color: inherit;
+  display: flex;
+  padding: 0.75em 1em;
+  text-decoration: none;
+  @apply text-base;
+}
+
+.tabs-component-panels {
+  /* padding: 2em 0; */
+  border-top: solid 2px #ddd;
+}
+
+.tabs-component-btn {
+  cursor: pointer;
+  background: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  padding: 4px 8px;
+  color: #39739d;
+}
+
+.tabs-component-btn:hover {
+  background-color: #b3d3ea;
+  color: #2c5777;
+}
+
+.tabs-component-btn:active {
+  background-color: #a0c7e4;
+  box-shadow: none;
+  color: #2c5777;
+}
+
+.tabs-component-tab--custom {
+  border-color: #e1ecf4;
+  color: #68838d;
+}
+
+.tabs-component-tab--custom:hover {
+  border-color: #e1ecf4;
+  color: #39739d;
+}
+
+.tabs-component-tab--custom.is-active {
+  color: #39739d;
+  border-color: #7aa7c7;
+  border-bottom: solid 1px #fff;
+}
