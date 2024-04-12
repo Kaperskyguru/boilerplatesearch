@@ -74,6 +74,11 @@
                   >
                     <Boilerplate
                       :item="boilerplate"
+                      v-for="(boilerplate, i) in featuredBoilerplates"
+                      :key="i"
+                    />
+                    <Boilerplate
+                      :item="boilerplate"
                       v-for="(boilerplate, i) in boilerplates"
                       :key="i"
                     />
@@ -113,6 +118,11 @@
                   <div
                     class="flex justify-start flex-col w-full lg:grid lg:grid-cols-3 gap-5"
                   >
+                    <Boilerplate
+                      :item="boilerplate"
+                      v-for="(boilerplate, i) in featuredBoilerplates"
+                      :key="i"
+                    />
                     <Boilerplate
                       :item="boilerplate"
                       v-for="(boilerplate, i) in boilerplates"
@@ -156,6 +166,11 @@
                   >
                     <Boilerplate
                       :item="boilerplate"
+                      v-for="(boilerplate, i) in featuredBoilerplates"
+                      :key="i"
+                    />
+                    <Boilerplate
+                      :item="boilerplate"
                       v-for="(boilerplate, i) in popular"
                       :key="i"
                     />
@@ -195,6 +210,11 @@
                   <div
                     class="flex justify-start flex-col w-full lg:grid lg:grid-cols-3 gap-5"
                   >
+                    <Boilerplate
+                      :item="boilerplate"
+                      v-for="(boilerplate, i) in featuredBoilerplates"
+                      :key="i"
+                    />
                     <Boilerplate
                       :item="boilerplate"
                       v-for="(boilerplate, i) in trending"
@@ -237,9 +257,13 @@ async function popularBoilerplates() {
   popular.value = all;
 }
 
-allBoilerplates();
-trendingBoilerplates();
-popularBoilerplates();
+await allBoilerplates();
+await trendingBoilerplates();
+await popularBoilerplates();
+
+const featuredBoilerplates = computed(() => {
+  return boilerplates.value.filter((item) => item.isFeatured);
+});
 
 function onFilter(filter) {
   console.log(filter);

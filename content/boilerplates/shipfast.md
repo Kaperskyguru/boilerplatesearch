@@ -6,5 +6,6 @@ tags: ["Emails", "Payments", "Login", "Database", "SEO", "Style", "Next.js"]
 isPopular: true
 isTrending: true
 shouldWriteReview: false
+isFeatured: true
 url: https://shipfa.st/?via=solomon
 ---

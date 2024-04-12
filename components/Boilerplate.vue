@@ -1,21 +1,30 @@
 <template>
-  <a :href="item?.url">
+  <div
+    :class="{
+      'bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 p-0.5 relative':
+        item?.isFeatured,
+    }"
+  >
+    <div
+      v-if="item?.isFeatured"
+      class="absolute bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-4 py-1 rounded-full"
+    >
+      <span>Featured</span>
+    </div>
     <div class="max-w-sm border rounded-lg shadow bg-black border-gray-700">
       <div class="shadow-lg border-b border-gray-700 w-full">
         <img class="w-ful object-fll" src="~/assets/img/shipfast.png" alt="" />
       </div>
       <div class="p-5">
         <div class="flex justify-between items-center py-2">
-          <h2 class="mb-2 text-2xl font-bold tracking-tight text-white">
-            {{ item?.title }}
-          </h2>
-          <a
-            v-if="item?.shouldWriteReview"
-            href="/articles/shipfast"
-            class="px-2 py-1 rounded-lg border"
-          >
-            My review
-          </a>
+          <div class="mb-3">
+            <span class="px-4 py-1 rounded-lg border border-gray-700">{{
+              item?.tags[0]
+            }}</span>
+            <h2 class="mt-4 mb-2 text-2xl font-bold tracking-tight text-white">
+              {{ item?.title }}
+            </h2>
+          </div>
         </div>
         <p class="mb-3 font-normal text-gray-400">
           {{ item?.description }}
@@ -27,6 +36,22 @@
             item?.price
           }}</span>
         </h3>
+
+        <div class="flex justify-center items-center gap-5 py-5">
+          <a
+            :href="item?.url"
+            class="px-4 py-1 rounded-lg border border-gray-700 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500"
+          >
+            Visit Website
+          </a>
+
+          <a
+            v-if="!item?.shouldWriteReview"
+            class="hover:underline px-4 py-1 rounded-lg border border-gray-700"
+            :href="item?.url"
+            >Learn more</a
+          >
+        </div>
       </div>
 
       <div class="flex gap-1 p-4 flex-wrap border-t border-gray-600">
@@ -39,7 +64,7 @@
         >
       </div>
     </div>
-  </a>
+  </div>
 </template>
 
 <script setup>
