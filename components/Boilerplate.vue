@@ -18,7 +18,7 @@
       <div class="shadow-lg border-b border-gray-700 w-full h-52">
         <img
           class="w-full h-full object-fill"
-          :src="`/_nuxt/assets/images/${item.image}`"
+          :src="computedImage()"
           :alt="item?.title"
         />
       </div>
@@ -98,7 +98,10 @@ const shortDescription = computed(() => {
 });
 
 const computedImage = () => {
-  return new URL(`../assets/img/${props.item?.image}`, import.meta.url).href;
+  const url = new URL(`../assets/img/${props.item?.image}`, import.meta.url)
+    .pathname;
+  console.log(url);
+  return url;
 };
 </script>
 
