@@ -1,5 +1,6 @@
 <template>
   <div
+    class="h-full"
     :class="{
       'bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 p-0.5 relative':
         item?.isFeatured,
@@ -11,9 +12,15 @@
     >
       <span>Featured</span>
     </div>
-    <div class="max-w-sm border rounded-lg shadow bg-black border-gray-700">
-      <div class="shadow-lg border-b border-gray-700 w-full">
-        <img class="w-ful object-fll" src="~/assets/img/shipfast.png" alt="" />
+    <div
+      class="max-w-sm h-full border rounded-lg shadow bg-black border-gray-700"
+    >
+      <div class="shadow-lg border-b border-gray-700 w-full h-52">
+        <img
+          class="w-full h-full object-fill"
+          :src="computedImage()"
+          :alt="item?.title"
+        />
       </div>
       <div class="p-5">
         <div class="flex justify-between items-center py-2">
@@ -27,7 +34,7 @@
           </div>
         </div>
         <p class="mb-3 font-normal text-gray-400">
-          {{ item?.description }}
+          {{ shortDescription }}
         </p>
 
         <h3 class="font-bold text-2xl">
@@ -46,7 +53,7 @@
           </a>
 
           <a
-            v-if="!item?.shouldWriteReview"
+            v-if="item?.shouldWriteReview"
             class="hover:underline px-4 py-1 rounded-lg border border-gray-700"
             :href="item?.url"
             >Learn more</a
@@ -84,6 +91,15 @@ const props = defineProps({
     default: () => {},
   },
 });
+
+const shortDescription = computed(() => {
+  if (props.item?.description?.length <= 200) return props.item?.description;
+  return props.item?.description?.substring(0, 200) + "...";
+});
+
+const computedImage = () => {
+  return new URL(`/assets/img/${props.item?.image}`, import.meta.url);
+};
 </script>
 
 <style>

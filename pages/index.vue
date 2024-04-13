@@ -234,36 +234,43 @@
 <script setup>
 import Boilerplate from "../components/Boilerplate.vue";
 const boilerplates = ref([]);
+const featuredBoilerplates = ref([]);
 const trending = ref([]);
 const popular = ref([]);
 const search = ref("");
 
 async function allBoilerplates() {
-  const all = await queryContent("boilerplates").find();
+  const all = await queryContent("boilerplates")
+    .where({ isFeatured: false })
+    .find();
   boilerplates.value = all;
 }
 
 async function trendingBoilerplates() {
   const all = await queryContent("boilerplates")
-    .where({ isTrending: true })
+    .where({ isTrending: true, isFeatured: false })
     .find();
   trending.value = all;
 }
 
 async function popularBoilerplates() {
   const all = await queryContent("boilerplates")
-    .where({ isPopular: true })
+    .where({ isPopular: true, isFeatured: false })
     .find();
   popular.value = all;
 }
 
+const featured = async () => {
+  const boilerplates = await queryContent("boilerplates")
+    .where({ isFeatured: true })
+    .find();
+  featuredBoilerplates.value = boilerplates;
+};
+
+await featured();
 await allBoilerplates();
 await trendingBoilerplates();
 await popularBoilerplates();
-
-const featuredBoilerplates = computed(() => {
-  return boilerplates.value.filter((item) => item.isFeatured);
-});
 
 function onFilter(filter) {
   console.log(filter);

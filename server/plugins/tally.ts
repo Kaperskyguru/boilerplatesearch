@@ -4,6 +4,9 @@ export default defineNitroPlugin((nitroApp: any) => {
     html.head.push(`
     
       <script async src="https://tally.so/widgets/embed.js"></script>
+
+      <script defer data-domain="boilerplatesearch.netlify.app" src="https://plausible.io/js/script.js"></script>
+
       `);
   });
 });

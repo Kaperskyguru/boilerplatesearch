@@ -8,4 +8,5 @@ isTrending: true
 shouldWriteReview: false
 isFeatured: true
 url: https://shipfa.st/?via=solomon
+image: shipfast.png
 ---
