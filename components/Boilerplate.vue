@@ -98,7 +98,7 @@ const shortDescription = computed(() => {
 });
 
 const computedImage = () => {
-  return new URL(`/assets/img/${props.item?.image}`, import.meta.url);
+  return new URL(`/assets/img/${props.item?.image}`, import.meta.url).href;
 };
 </script>
 
