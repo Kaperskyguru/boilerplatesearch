@@ -18,7 +18,7 @@
       <div class="shadow-lg border-b border-gray-700 w-full h-52">
         <img
           class="w-full h-full object-fill"
-          :src="computedImage()"
+          :src="`/img/${props.item?.image}`"
           :alt="item?.title"
         />
       </div>
@@ -98,8 +98,7 @@ const shortDescription = computed(() => {
 });
 
 const computedImage = () => {
-  const url = new URL(`../assets/img/${props.item?.image}`, import.meta.url)
-    .pathname;
+  const url = new URL(`./img/${props.item?.image}`, import.meta.url).href;
   console.log(url);
   return url;
 };
