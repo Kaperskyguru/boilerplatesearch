@@ -18,7 +18,7 @@
       <div class="shadow-lg border-b border-gray-700 w-full h-52">
         <img
           class="w-full h-full object-fill"
-          :src="computedImage()"
+          :src="`/_nuxt/assets/images/${item.image}`"
           :alt="item?.title"
         />
       </div>
