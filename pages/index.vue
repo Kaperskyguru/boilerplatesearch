@@ -39,7 +39,7 @@
     </div>
 
     <tabs
-      class="search shadow py-10"
+      class="search shadow py-10 flex-row"
       :options="{ defaultTabHash: 'all', useUrlFragment: true }"
       cache-lifetime="0"
     >
@@ -47,14 +47,16 @@
         <div class="w-ful shadow bg-black py-5">
           <div class="fle w-full">
             <div class="w-11/12 mx-auto pt-5">
-              <div class="flex w-full gap-10">
+              <div class="flex lg:flex-row md:flex-row flex-col w-full gap-10">
                 <div
-                  class="w-1/5 h-full bg-black border border-gray-700 text-white"
+                  class="w-full md:w-1/3 lg:w-1/5 h-full bg-black border border-gray-700 text-white"
                 >
                   <Filter @filter="onFilter" />
                 </div>
                 <div>
-                  <div class="flex justify-between pb-5">
+                  <div
+                    class="flex justify-between md:flex-col flex-row lg:flex-row gap-5 pb-5"
+                  >
                     <div>
                       <h2 class="font-blod text-2xl">All Boilerplates</h2>
                     </div>
@@ -70,7 +72,7 @@
                   </div>
 
                   <div
-                    class="flex justify-start flex-col w-full lg:grid lg:grid-cols-3 gap-5"
+                    class="flex justify-start flex-col w-full lg:grid lg:grid-cols-3 gap-5 pt-5"
                   >
                     <Boilerplate
                       :item="boilerplate"
@@ -93,14 +95,16 @@
         <div class="w-ful shadow bg-black py-5">
           <div class="fle w-full">
             <div class="w-11/12 mx-auto pt-5">
-              <div class="flex w-full gap-10">
+              <div class="flex lg:flex-row md:flex-row flex-col w-full gap-10">
                 <div
-                  class="w-1/5 h-full bg-black border border-gray-700 text-white"
+                  class="w-full md:w-1/3 lg:w-1/5 h-full bg-black border border-gray-700 text-white"
                 >
                   <Filter @filter="onFilter" />
                 </div>
                 <div>
-                  <div class="flex justify-between pb-5">
+                  <div
+                    class="flex justify-between md:flex-col flex-row lg:flex-row gap-5 pb-5"
+                  >
                     <div>
                       <h2 class="font-blod text-2xl">Latest Boilerplates</h2>
                     </div>
@@ -116,7 +120,7 @@
                   </div>
 
                   <div
-                    class="flex justify-start flex-col w-full lg:grid lg:grid-cols-3 gap-5"
+                    class="flex justify-start flex-col w-full lg:grid lg:grid-cols-3 gap-5 pt-5"
                   >
                     <Boilerplate
                       :item="boilerplate"
@@ -139,14 +143,16 @@
         <div class="w-ful shadow bg-black py-5">
           <div class="fle w-full">
             <div class="w-11/12 mx-auto pt-5">
-              <div class="flex w-full gap-10">
+              <div class="flex lg:flex-row md:flex-row flex-col w-full gap-10">
                 <div
-                  class="w-1/5 h-full bg-black border border-gray-700 text-white"
+                  class="w-full md:w-1/3 lg:w-1/5 h-full bg-black border border-gray-700 text-white"
                 >
                   <Filter @filter="onFilter" />
                 </div>
                 <div>
-                  <div class="flex justify-between pb-5">
+                  <div
+                    class="flex justify-between md:flex-col flex-row lg:flex-row gap-5 pb-5"
+                  >
                     <div>
                       <h2 class="font-blod text-2xl">Popular Boilerplates</h2>
                     </div>
@@ -162,7 +168,7 @@
                   </div>
 
                   <div
-                    class="flex justify-start flex-col w-full lg:grid lg:grid-cols-3 gap-5"
+                    class="flex justify-start flex-col w-full lg:grid lg:grid-cols-3 gap-5 pt-5"
                   >
                     <Boilerplate
                       :item="boilerplate"
@@ -185,14 +191,16 @@
         <div class="w-ful shadow bg-black py-5">
           <div class="fle w-full">
             <div class="w-11/12 mx-auto pt-5">
-              <div class="flex w-full gap-10">
+              <div class="flex lg:flex-row md:flex-row flex-col w-full gap-10">
                 <div
-                  class="w-1/5 h-full bg-black border border-gray-700 text-white"
+                  class="w-full md:w-1/3 lg:w-1/5 h-full bg-black border border-gray-700 text-white"
                 >
                   <Filter @filter="onFilter" />
                 </div>
                 <div>
-                  <div class="flex justify-between pb-5">
+                  <div
+                    class="flex justify-between gap-5 md:flex-col flex-row lg:flex-row pb-5"
+                  >
                     <div>
                       <h2 class="font-blod text-2xl">Trending Boilerplates</h2>
                     </div>
@@ -208,7 +216,7 @@
                   </div>
 
                   <div
-                    class="flex justify-start flex-col w-full lg:grid lg:grid-cols-3 gap-5"
+                    class="flex justify-start flex-col w-full lg:grid lg:grid-cols-3 gap-5 pt-5"
                   >
                     <Boilerplate
                       :item="boilerplate"

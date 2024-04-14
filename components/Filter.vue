@@ -1,5 +1,5 @@
 <template>
-  <div class="flex rounded shadow">
+  <div class="flex rounded shadow w-full">
     <div class="w-full p-4">
       <div
         class="flex justify-between py-2 px-2 border-solid border-b border-gray-700"
