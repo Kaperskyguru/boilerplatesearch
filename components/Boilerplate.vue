@@ -65,7 +65,7 @@
         <span
           v-for="(tag, i) in [...(item?.tags ?? [])]"
           :key="i"
-          class="rounded-lg px-2 inline-block py-1"
+          class="rounded-lg border border-gray-700 px-2 inline-block py-1"
           :class="colors[Math.floor(Math.random() * item?.tags?.length)]"
           >{{ tag }}</span
         >

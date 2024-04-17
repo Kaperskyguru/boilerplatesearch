@@ -43,7 +43,7 @@
       :options="{ defaultTabHash: 'all', useUrlFragment: true }"
       cache-lifetime="0"
     >
-      <tab id="all" :name="`All (${boilerplates?.length})`">
+      <tab id="all" :name="`All`">
         <div class="w-ful shadow bg-black py-5">
           <div class="fle w-full">
             <div class="w-11/12 mx-auto pt-5">
@@ -91,7 +91,7 @@
           </div>
         </div>
       </tab>
-      <tab id="latest" :name="`Latest (${boilerplates?.length})`">
+      <tab id="latest" :name="`Latest`">
         <div class="w-ful shadow bg-black py-5">
           <div class="fle w-full">
             <div class="w-11/12 mx-auto pt-5">
@@ -139,7 +139,7 @@
           </div>
         </div>
       </tab>
-      <tab id="popular" :name="`Popular (${popular?.length})`">
+      <tab id="popular" :name="`Popular`">
         <div class="w-ful shadow bg-black py-5">
           <div class="fle w-full">
             <div class="w-11/12 mx-auto pt-5">
@@ -187,7 +187,7 @@
           </div>
         </div>
       </tab>
-      <tab id="trending" :name="`Trending (${trending?.length})`">
+      <tab id="trending" :name="`Trending`">
         <div class="w-ful shadow bg-black py-5">
           <div class="fle w-full">
             <div class="w-11/12 mx-auto pt-5">
