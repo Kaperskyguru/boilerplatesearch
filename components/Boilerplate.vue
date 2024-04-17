@@ -96,12 +96,6 @@ const shortDescription = computed(() => {
   if (props.item?.description?.length <= 200) return props.item?.description;
   return props.item?.description?.substring(0, 200) + "...";
 });
-
-const computedImage = () => {
-  const url = new URL(`./img/${props.item?.image}`, import.meta.url).href;
-  console.log(url);
-  return url;
-};
 </script>
 
 <style>

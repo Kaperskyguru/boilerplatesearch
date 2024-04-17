@@ -20,6 +20,81 @@
 </template>
 
 <script setup>
+const { data } = await useAsyncData(`blog/${useRoute().params?.slug}`, () =>
+  queryContent(`blog/${useRoute().params?.slug}`).findOne()
+);
+
+useHead({
+  title: data.value?.title,
+  meta: [
+    {
+      hid: "keywords",
+      name: "keywords",
+      content: `SaaS, SaaS boilerplates`,
+    },
+    {
+      hid: "description",
+      name: "description",
+      content: data.value?.description,
+    },
+
+    {
+      hid: "og:title",
+      property: "og:title",
+      content: data.value?.title,
+    },
+    {
+      hid: "og:description",
+      property: "og:description",
+      content: data.value?.description,
+    },
+    {
+      hid: "og:image",
+      property: "og:image",
+      content: `/img/blog/${data.value?.image}`,
+    },
+    {
+      hid: "og:url",
+      property: "og:url",
+      content: `/${useRoute().params?.slug}`,
+    },
+    {
+      hid: "article:published_time",
+      property: "article:published_time",
+      content: data.value?.createdAt,
+    },
+    {
+      hid: "article:modified_time",
+      property: "article:modified_time",
+      content: data.value?.updatedAt,
+    },
+    {
+      hid: "og:type",
+      property: "og:type",
+      content: "article",
+    },
+    {
+      hid: "og:image:width",
+      property: "og:image:width",
+      content: "100",
+    },
+    {
+      hid: "og:image:height",
+      property: "og:image:height",
+      content: "100",
+    },
+    {
+      hid: "og:type",
+      property: "og:type",
+      content: "website",
+    },
+    {
+      hid: "twitter:card",
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+  ],
+});
 </script>
 
 <style>
