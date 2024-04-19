@@ -21,6 +21,6 @@ isPopular: false
 isTrending: false
 shouldWriteReview: false
 isFeatured: true
-url: https://shipixen.com/
+url: https://shipixen.com?aff=b6wWP
 image: shipixen.png
 ---
