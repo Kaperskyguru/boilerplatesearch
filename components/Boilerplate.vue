@@ -46,7 +46,7 @@
 
         <div class="flex justify-center items-center gap-5 py-5">
           <a
-            :href="item?.url"
+            :href="link"
             class="px-4 py-1 rounded-lg border border-gray-700 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500"
           >
             Visit Website
@@ -95,6 +95,12 @@ const props = defineProps({
 const shortDescription = computed(() => {
   if (props.item?.description?.length <= 200) return props.item?.description;
   return props.item?.description?.substring(0, 200) + "...";
+});
+
+const link = computed(() => {
+  if (props.item?.url.includes("?"))
+    return `${props.item?.url}&utm_campaign=homepage&utm_medium=BoilerplateSearch&utm_source=boilerplatesearch.com`;
+  return `${props.item?.url}?utm_campaign=homepage&utm_medium=BoilerplateSearch&utm_source=boilerplatesearch.com`;
 });
 </script>
 

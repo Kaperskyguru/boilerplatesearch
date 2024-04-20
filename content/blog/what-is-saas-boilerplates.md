@@ -62,7 +62,7 @@ By leveraging SaaS boilerplates, startups can prioritize developing core product
 
 ## **Examples**
 
-Several prominent boilerplates have revolutionized the way startups approach product development. Examples such as [Shipfast (Next.js boilerplate)](#) and [Larafast (Laravel SaaS Starter Kit)](#) have empowered countless startups to accelerate their development cycles and succeed in their respective industries.
+Several prominent boilerplates have revolutionized the way startups approach product development. Examples such as [Shipfast (Next.js boilerplate)](https://shipfa.st/?via=solomon&utm_campaign=homepage&utm_medium=BoilerplateSearch&utm_source=boilerplatesearch.com) and [Larafast (Laravel SaaS Starter Kit)](https://larafast.com?aff=b6wWP&utm_campaign=homepage&utm_medium=BoilerplateSearch&utm_source=boilerplatesearch.com) have empowered countless startups to accelerate their development cycles and succeed in their respective industries.
 
 ## **Conclusion**
 
@@ -74,8 +74,8 @@ As we look to the future of software development, SaaS boilerplates will continu
 
 ## Examples
 
-[1] Shipfast - The NextJS boilerplate: [https://shipfa.st](https://shipfa.st/?via=solomon)
+[1] Shipfast - The NextJS boilerplate: [https://shipfa.st](https://shipfa.st/?via=solomon&utm_campaign=homepage&utm_medium=BoilerplateSearch&utm_source=boilerplatesearch.com)
 
-[2] Larafast - Laravel SaaS Starter Kit: [https://larafast.com](https://larafast.com?aff=b6wWP)
+[2] Larafast - Laravel SaaS Starter Kit: [https://larafast.com](https://larafast.com?aff=b6wWP&utm_campaign=homepage&utm_medium=BoilerplateSearch&utm_source=boilerplatesearch.com)
 
 [3] All SaaS boilerplates - See All SaaS Boilerplates: [BoilerplateSearch](/)
