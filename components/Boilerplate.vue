@@ -25,9 +25,11 @@
       <div class="p-5">
         <div class="flex justify-between items-center py-2">
           <div class="mb-3">
-            <span class="px-4 py-1 rounded-lg border border-gray-700">{{
-              item?.tags[0]
-            }}</span>
+            <nuxt-link
+              :to="`/${getTagLink(item?.tags[0])}`"
+              class="px-4 py-1 rounded-lg border border-gray-700"
+              >{{ item?.tags[0] }}</nuxt-link
+            >
             <h2 class="mt-4 mb-2 text-2xl font-bold tracking-tight text-white">
               {{ item?.title }}
             </h2>
@@ -62,12 +64,13 @@
       </div>
 
       <div class="flex gap-1 p-4 flex-wrap border-t border-gray-600">
-        <span
+        <nuxt-link
+          :to="`/${getTagLink(tag)}`"
           v-for="(tag, i) in [...(item?.tags ?? [])]"
           :key="i"
           class="rounded-lg border border-gray-700 px-2 inline-block py-1"
           :class="colors[Math.floor(Math.random() * item?.tags?.length)]"
-          >{{ tag }}</span
+          >{{ tag }}</nuxt-link
         >
       </div>
     </div>
@@ -75,6 +78,7 @@
 </template>
 
 <script setup>
+import slugify from "slugify";
 const colors = ref([
   "bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500",
   "bg-green-400",
@@ -102,6 +106,12 @@ const link = computed(() => {
     return `${props.item?.url}&utm_campaign=homepage&utm_medium=BoilerplateSearch&utm_source=boilerplatesearch.com`;
   return `${props.item?.url}?utm_campaign=homepage&utm_medium=BoilerplateSearch&utm_source=boilerplatesearch.com`;
 });
+
+function getTagLink(tag) {
+  // const _tag = tag.toLowerCase();
+  return tag;
+  // return slugify(tag, { trim: true, strict: false });
+}
 </script>
 
 <style>
