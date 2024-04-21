@@ -4,7 +4,7 @@ description: "A Node.js SaaS Boilerplate to launch your SaaS faster, reduce deve
 price: "$699 - $2099"
 tags:
   [
-    "Node.js/Express",
+    "Node.js+Express",
     "Subscription Payments",
     "Authentication",
     "Teams & Multitenancy",
