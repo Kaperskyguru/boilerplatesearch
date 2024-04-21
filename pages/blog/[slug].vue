@@ -16,6 +16,25 @@
         </article>
       </ContentDoc>
     </div>
+
+    <div class="mt-20">
+      <hr />
+    </div>
+
+    <div class="w-5/6 mx-auto pt-5">
+      <div class="py-5">
+        <h3 class="text-2xl">Top Featured Boilerplates</h3>
+      </div>
+      <div
+        class="flex justify-start flex-col w-full lg:grid lg:grid-cols-4 gap-5 pt-5"
+      >
+        <Boilerplate
+          :item="boilerplate"
+          v-for="(boilerplate, i) in featuredBoilerplates"
+          :key="i"
+        />
+      </div>
+    </div>
   </main>
 </template>
 
@@ -23,6 +42,13 @@
 const { data } = await useAsyncData(`blog/${useRoute().params?.slug}`, () =>
   queryContent(`blog/${useRoute().params?.slug}`).findOne()
 );
+
+const featuredBoilerplates = ref([]);
+const boilerplates = await queryContent("boilerplates")
+  .where({ isFeatured: true })
+  .limit(4)
+  .find();
+featuredBoilerplates.value = boilerplates;
 
 useHead({
   title: data.value?.title,

@@ -10,7 +10,7 @@
         A one-stop-shop for your boilerplate search for your next project.
       </p>
       <a class="py-3 font-bold" href="/blog"
-        >Why use boilerplatess? Visit our blog</a
+        >Why use boilerplates? Visit our blog</a
       >
     </div>
     <slot />
