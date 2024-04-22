@@ -16,10 +16,6 @@
               {{ article.description }}
             </p>
 
-            <a class="tag spirituality" href="/blog/tag/spirituality"
-              >spirituality</a
-            >
-
             <!-- <span
             class="block md:inline md:float-right md:pt-4 pt-2 created-date"
             datetime="Sat Oct 08 2016 19:00:00 GMT-0500 (Central Daylight Time)"
