@@ -1,0 +1,233 @@
+<template>
+  <main class="pt-10 pb-16 lg:pt-16 lg:pb-24 bg-black antialiased">
+    <div class="mx-auto flex justify-center max-w-screen-xl">
+      <header class="mb-4 pt-4 lg:mb-6 not-format">
+        <h1
+          class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white"
+        >
+          {{ `Top ${tag} SaaS Boilerplates (2024)` }}
+        </h1>
+        <p>Below are the top {{ tag }} boilerplates</p>
+      </header>
+    </div>
+
+    <div
+      class="flex justify-between px-4 mx-auto max-w-screen-xl border-b border-gray-900"
+      v-for="(boilerplate, i) in allBoilerplates"
+      :key="i"
+    >
+      <div
+        id="article"
+        class="mx-auto w-full my-5 max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert"
+      >
+        <header class="mb2 ot-format">
+          <h2
+            class="mb-2 text-3xl font-extrabold leading-tight text-gray-900 lg:text-4xl dark:text-white"
+          >
+            {{ boilerplate.title }}
+          </h2>
+        </header>
+        <div class="shadow-lg border-b border-gray-700 my-4 w-full h-auto">
+          <img
+            class="w-full h-full object-fill"
+            :src="`/img/${boilerplate?.image}`"
+            :alt="boilerplate?.title"
+          />
+        </div>
+
+        <article v-html="boilerplate.description"></article>
+
+        <div>
+          <h2>Key Features</h2>
+          <div class="flex flex-col">
+            <ul>
+              <li v-for="(tag, i) in boilerplate?.tags" :key="i">{{ tag }}</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2>Price Range</h2>
+          <div class="flex flex-col">
+            <span>
+              {{ boilerplate?.price }}
+            </span>
+          </div>
+        </div>
+        <div class="py-5 text-center">
+          <a
+            class="py-2 px-3 rounded-lg border border-gray-700 px-2 inline-block py-1"
+            :href="link(boilerplate?.url)"
+            >Visit Website</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-20">
+      <hr />
+    </div>
+
+    <div class="w-5/6 mx-auto pt-5">
+      <div class="py-5">
+        <h3 class="text-2xl">Top Featured Boilerplates</h3>
+      </div>
+      <div
+        class="flex justify-start flex-col w-full lg:grid lg:grid-cols-4 gap-5 pt-5"
+      >
+        <Boilerplate
+          :item="boilerplate"
+          v-for="(boilerplate, i) in featuredBoilerplates"
+          :key="i"
+        />
+      </div>
+    </div>
+  </main>
+</template>
+  
+  <script setup>
+const { data } = await useAsyncData(`blog/${useRoute().params?.slug}`, () =>
+  queryContent(`blog/${useRoute().params?.slug}`).findOne()
+);
+
+const featuredBoilerplates = ref([]);
+const boilerplates = await queryContent("boilerplates")
+  .where({ isFeatured: true })
+  .limit(4)
+  .find();
+featuredBoilerplates.value = boilerplates;
+
+const slug = useRoute().params?.slug;
+const allSlug = slug.split("top-")[1];
+const tag = allSlug.split("-saas-boilerplates")[0];
+
+const allBoilerplates = await queryContent("boilerplates")
+  .where({ tags: { $icontains: tag } })
+  .find();
+
+// const group = computed(() => {
+//   return allBoilerplates.reduce(function (r, a) {
+//     const key = a.tags[0];
+//     r[key] = r[key] || [];
+//     r[key].push(a);
+//     return r;
+//   }, Object.create(null));
+// });
+
+const link = (url) => {
+  if (url.includes("?"))
+    return `${url}&utm_campaign=homepage&utm_medium=BoilerplateSearch&utm_source=boilerplatesearch.com`;
+  return `${url}?utm_campaign=homepage&utm_medium=BoilerplateSearch&utm_source=boilerplatesearch.com`;
+};
+
+useHead({
+  title: data.value?.title,
+  meta: [
+    {
+      hid: "keywords",
+      name: "keywords",
+      content: `SaaS, SaaS boilerplates`,
+    },
+    {
+      hid: "description",
+      name: "description",
+      content: data.value?.description,
+    },
+
+    {
+      hid: "og:title",
+      property: "og:title",
+      content: data.value?.title,
+    },
+    {
+      hid: "og:description",
+      property: "og:description",
+      content: data.value?.description,
+    },
+    {
+      hid: "og:image",
+      property: "og:image",
+      content: `/img/blog/${data.value?.image}`,
+    },
+    {
+      hid: "og:url",
+      property: "og:url",
+      content: `/${useRoute().params?.slug}`,
+    },
+    {
+      hid: "article:published_time",
+      property: "article:published_time",
+      content: data.value?.createdAt,
+    },
+    {
+      hid: "article:modified_time",
+      property: "article:modified_time",
+      content: data.value?.updatedAt,
+    },
+    {
+      hid: "og:type",
+      property: "og:type",
+      content: "article",
+    },
+    {
+      hid: "og:image:width",
+      property: "og:image:width",
+      content: "100",
+    },
+    {
+      hid: "og:image:height",
+      property: "og:image:height",
+      content: "100",
+    },
+    {
+      hid: "og:type",
+      property: "og:type",
+      content: "website",
+    },
+    {
+      hid: "twitter:card",
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+  ],
+});
+</script>
+  
+  <style>
+div#article p {
+  @apply py-3 text-lg;
+}
+
+div#article h2 {
+  @apply py-4 text-2xl;
+}
+
+div#article h3 {
+  @apply py-3 text-xl;
+}
+
+div#article h4 {
+  @apply py-2 text-lg;
+}
+
+div#article h2,
+div#article h3,
+div#article h4,
+div#article h5,
+div#article h6 {
+  @apply font-bold;
+}
+
+div#article ul,
+div#article ol {
+  @apply list-disc px-5;
+}
+
+div#article img {
+  @apply py-3;
+}
+
+div#article li {
+  @apply py-1;
+}
+</style>

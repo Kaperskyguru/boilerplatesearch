@@ -9,10 +9,18 @@
       <p class="text-light-100 mt-5 max-w-xl text-center">
         A one-stop-shop for your boilerplate search for your next project.
       </p>
-      <a class="py-3 font-bold" href="/blog"
-        >Why use boilerplates? Visit our blog</a
-      >
+      <div class="flex items-center gap-1">
+        <a
+          class="py-3 font-bold"
+          href="/blog/why-you-need-a-boilerplate-for-your-next-saas-project"
+          >Why use boilerplates?
+        </a>
+        |
+        <a class="py-3 font-bold" href="/blog"> Visit our blog</a>
+        | <a class="py-3 font-bold" href="/tops">Our Top Lists</a>
+      </div>
     </div>
+
     <slot />
 
     <footer class="py-20 flex justify-center">
