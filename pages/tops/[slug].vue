@@ -7,7 +7,11 @@
         >
           {{ `Top ${tag} SaaS Boilerplates (2024)` }}
         </h1>
-        <p>Below are the top {{ tag }} boilerplates</p>
+        <p>
+          Discover the top ranking {{ tag }} SaaS boilerplates for your next
+          SaaS project and startups. Ranking are based on lots of features such
+          as Authentication, technology, clean code, key features, etc
+        </p>
       </header>
     </div>
 
@@ -86,10 +90,6 @@
 </template>
   
   <script setup>
-const { data } = await useAsyncData(`blog/${useRoute().params?.slug}`, () =>
-  queryContent(`blog/${useRoute().params?.slug}`).findOne()
-);
-
 const featuredBoilerplates = ref([]);
 const boilerplates = await queryContent("boilerplates")
   .where({ isFeatured: true })
@@ -121,7 +121,7 @@ const link = (url) => {
 };
 
 useHead({
-  title: data.value?.title,
+  title: `Top ${tag} SaaS Boilerplates (${new Date().getFullYear()})`,
   meta: [
     {
       hid: "keywords",
@@ -131,43 +131,33 @@ useHead({
     {
       hid: "description",
       name: "description",
-      content: data.value?.description,
+      content: `Discover the top ranking ${tag} SaaS boilerplates for your next SaaS project and startups. Ranking are based on lots of features such as Authentication, technology, clean code, key features, etc`,
     },
 
     {
       hid: "og:title",
       property: "og:title",
-      content: data.value?.title,
+      content: `Top ${tag} SaaS Boilerplates (${new Date().getFullYear()})`,
     },
     {
       hid: "og:description",
       property: "og:description",
-      content: data.value?.description,
+      content: `Discover the top ranking ${tag} SaaS boilerplates for your next SaaS project and startups. Ranking are based on lots of features such as Authentication, technology, clean code, key features, etc`,
     },
     {
       hid: "og:image",
       property: "og:image",
-      content: `/img/blog/${data.value?.image}`,
-    },
-    {
-      hid: "og:url",
-      property: "og:url",
-      content: `/${useRoute().params?.slug}`,
-    },
-    {
-      hid: "article:published_time",
-      property: "article:published_time",
-      content: data.value?.createdAt,
-    },
-    {
-      hid: "article:modified_time",
-      property: "article:modified_time",
-      content: data.value?.updatedAt,
+      content: `/img/top.png`,
     },
     {
       hid: "og:type",
       property: "og:type",
       content: "article",
+    },
+    {
+      hid: "og:url",
+      property: "og:url",
+      content: `/tops/${useRoute().params?.slug}`,
     },
     {
       hid: "og:image:width",
@@ -178,11 +168,6 @@ useHead({
       hid: "og:image:height",
       property: "og:image:height",
       content: "100",
-    },
-    {
-      hid: "og:type",
-      property: "og:type",
-      content: "website",
     },
     {
       hid: "twitter:card",

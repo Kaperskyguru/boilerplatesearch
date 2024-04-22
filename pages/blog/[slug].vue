@@ -82,7 +82,7 @@ useHead({
     {
       hid: "og:url",
       property: "og:url",
-      content: `/${useRoute().params?.slug}`,
+      content: `/blog/${useRoute().params?.slug}`,
     },
     {
       hid: "article:published_time",
@@ -108,11 +108,6 @@ useHead({
       hid: "og:image:height",
       property: "og:image:height",
       content: "100",
-    },
-    {
-      hid: "og:type",
-      property: "og:type",
-      content: "website",
     },
     {
       hid: "twitter:card",

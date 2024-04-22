@@ -12,10 +12,6 @@
               `Top ${article} SaaS Boilerplates (2024)`
             }}</a>
           </h1>
-
-          <!-- <p class="excerpt">
-            {{ article.description }}
-          </p> -->
         </div>
       </div>
     </div>
@@ -53,6 +49,58 @@ const group = computed(() => {
     r.push(key);
     return [...new Set(r)];
   }, []);
+});
+
+useHead({
+  title: `Top SaaS Boilerplates (${new Date().getFullYear()})`,
+  meta: [
+    {
+      hid: "description",
+      name: "description",
+      content: `Discover the top ranking SaaS boilerplates for your next SaaS project and startups. Ranking are based on lots of features such as Authentication, technology, clean code, key features, etc`,
+    },
+
+    {
+      hid: "og:title",
+      property: "og:title",
+      content: `Top SaaS Boilerplates (${new Date().getFullYear()})`,
+    },
+    {
+      hid: "og:description",
+      property: "og:description",
+      content: `Discover the top ranking SaaS boilerplates for your next SaaS project and startups. Ranking are based on lots of features such as Authentication, technology, clean code, key features, etc`,
+    },
+    {
+      hid: "og:image",
+      property: "og:image",
+      content: `/img/top.png`,
+    },
+    {
+      hid: "og:url",
+      property: "og:url",
+      content: `/tops`,
+    },
+    {
+      hid: "og:image:width",
+      property: "og:image:width",
+      content: "100",
+    },
+    {
+      hid: "og:image:height",
+      property: "og:image:height",
+      content: "100",
+    },
+    {
+      hid: "og:type",
+      property: "og:type",
+      content: "website",
+    },
+    {
+      hid: "twitter:card",
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+  ],
 });
 </script>
 

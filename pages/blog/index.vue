@@ -25,24 +25,6 @@
           </div>
         </ContentList>
       </div>
-
-      <!-- <div>
-      <div class="md:flex justify-evenly mb-6">
-        <div class="flex justify-between mx-auto w-full">
-          <div class="mx-auto mb-4">
-            <a class="next-page md:mb-2" href="/blog/page/2/">Previous Page</a>
-          </div>
-        </div>
-
-        <div class="flex justify-between mx-auto w-full">
-          <div class="mx-auto">
-            <a class="last-page" href="/blog/page/2/">Last Page</a>
-          </div>
-        </div>
-      </div>
-
-      <p class="text-center text-sm italic mb-10">(On page 1 of 2.)</p>
-    </div> -->
     </div>
 
     <div class="w-5/6 mx-auto pt-5">
@@ -69,6 +51,58 @@ const boilerplates = await queryContent("boilerplates")
   .limit(4)
   .find();
 featuredBoilerplates.value = boilerplates;
+
+useHead({
+  title: `Blog - BoilerplateSearch.com`,
+  meta: [
+    {
+      hid: "description",
+      name: "description",
+      content: `Discover the top ranking SaaS boilerplates for your next SaaS project and startups. What is SaaS Boilerplates?`,
+    },
+
+    {
+      hid: "og:title",
+      property: "og:title",
+      content: `Blog - BoilerplateSearch.com`,
+    },
+    {
+      hid: "og:description",
+      property: "og:description",
+      content: `Discover the top ranking SaaS boilerplates for your next SaaS project and startups. What is SaaS Boilerplates?`,
+    },
+    {
+      hid: "og:image",
+      property: "og:image",
+      content: `/img/top.png`,
+    },
+    {
+      hid: "og:url",
+      property: "og:url",
+      content: `/blog`,
+    },
+    {
+      hid: "og:image:width",
+      property: "og:image:width",
+      content: "100",
+    },
+    {
+      hid: "og:image:height",
+      property: "og:image:height",
+      content: "100",
+    },
+    {
+      hid: "og:type",
+      property: "og:type",
+      content: "website",
+    },
+    {
+      hid: "twitter:card",
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+  ],
+});
 </script>
 
 <style>
