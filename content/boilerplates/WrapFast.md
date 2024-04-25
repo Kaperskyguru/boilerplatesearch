@@ -17,7 +17,7 @@ tags:
 isPopular: false
 isTrending: false
 shouldWriteReview: false
-isFeatured: true
+isFeatured: false
 url: https://wrapfa.st?via=kap
 image: wrapfast.png
 ---
