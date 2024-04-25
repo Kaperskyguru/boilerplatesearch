@@ -14,8 +14,8 @@ tags:
     "Analytics",
     "Components",
   ]
-isPopular: false
-isTrending: false
+isPopular: true
+isTrending: true
 shouldWriteReview: false
 isFeatured: true
 url: https://turbost.art/
