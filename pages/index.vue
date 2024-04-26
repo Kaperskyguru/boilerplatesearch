@@ -247,32 +247,62 @@ const trending = ref([]);
 const popular = ref([]);
 const search = ref("");
 
-async function allBoilerplates() {
-  const all = await queryContent("boilerplates")
-    .where({ isFeatured: false })
-    .find();
-  boilerplates.value = all;
+async function allBoilerplates(filter = {}) {
+  if (filter !== "{}" && filter?.tags?.length) {
+    const { data } = await useAsyncData(
+      "searchBoilerplates" + filter?.tags?.join(","),
+      () =>
+        queryContent("boilerplates")
+          .where({ tags: { $containsAny: filter?.tags } })
+          .find()
+    );
+
+    boilerplates.value = data.value;
+    return;
+  }
+
+  if (filter?.search) {
+    const { data } = await useAsyncData(
+      "searchBoilerplates" + filter?.search,
+      () =>
+        queryContent("boilerplates")
+          .where({ title: { $regex: filter?.search } })
+          .find()
+    );
+
+    boilerplates.value = data.value;
+    return;
+  }
+
+  const { data } = await useAsyncData("boilerplates", () =>
+    queryContent("boilerplates").where({ isFeatured: false }).find()
+  );
+  boilerplates.value = data.value;
 }
 
 async function trendingBoilerplates() {
-  const all = await queryContent("boilerplates")
-    .where({ isTrending: true, isFeatured: false })
-    .find();
-  trending.value = all;
+  const { data } = await useAsyncData("trending", () =>
+    queryContent("boilerplates")
+      .where({ isTrending: true, isFeatured: false })
+      .find()
+  );
+  trending.value = data.value;
 }
 
 async function popularBoilerplates() {
-  const all = await queryContent("boilerplates")
-    .where({ isPopular: true, isFeatured: false })
-    .find();
-  popular.value = all;
+  const { data } = await useAsyncData("popular", () =>
+    queryContent("boilerplates")
+      .where({ isPopular: true, isFeatured: false })
+      .find()
+  );
+  popular.value = data.value;
 }
 
 const featured = async () => {
-  const boilerplates = await queryContent("boilerplates")
-    .where({ isFeatured: true })
-    .find();
-  featuredBoilerplates.value = boilerplates;
+  const { data } = await useAsyncData("featuredBoilerplates", () =>
+    queryContent("boilerplates").where({ isFeatured: true }).find()
+  );
+  featuredBoilerplates.value = data.value;
 };
 
 await featured();
@@ -280,9 +310,27 @@ await allBoilerplates();
 await trendingBoilerplates();
 await popularBoilerplates();
 
-function onFilter(filter) {
-  console.log(filter);
+async function onFilter(filter) {
+  await allBoilerplates(filter);
+  if (filter !== "{}" && filter?.tags?.length) {
+    featuredBoilerplates.value = [];
+    return;
+  }
+  await featured();
 }
+
+watch(search, async (value) => {
+  await allBoilerplates({
+    search: value,
+  });
+
+  if (value) {
+    featuredBoilerplates.value = [];
+    return;
+  }
+
+  await featured();
+});
 </script>
 
 <style>

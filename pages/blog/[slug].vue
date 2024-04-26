@@ -44,11 +44,10 @@ const { data } = await useAsyncData(`blog/${useRoute().params?.slug}`, () =>
 );
 
 const featuredBoilerplates = ref([]);
-const boilerplates = await queryContent("boilerplates")
-  .where({ isFeatured: true })
-  .limit(4)
-  .find();
-featuredBoilerplates.value = boilerplates;
+const { data: featured } = await useAsyncData("featuredBoilerplates", () =>
+  queryContent("boilerplates").where({ isFeatured: true }).limit(4).find()
+);
+featuredBoilerplates.value = featured.value;
 
 useHead({
   title: data.value?.title,

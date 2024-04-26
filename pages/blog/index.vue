@@ -46,11 +46,10 @@
 
 <script setup>
 const featuredBoilerplates = ref([]);
-const boilerplates = await queryContent("boilerplates")
-  .where({ isFeatured: true })
-  .limit(4)
-  .find();
-featuredBoilerplates.value = boilerplates;
+const { data } = await useAsyncData("featuredBoilerplates", () =>
+  queryContent("boilerplates").where({ isFeatured: true }).limit(4).find()
+);
+featuredBoilerplates.value = data.value;
 
 useHead({
   title: `Blog - BoilerplateSearch.com`,

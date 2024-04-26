@@ -55,9 +55,8 @@
           </a>
 
           <a
-            v-if="item?.shouldWriteReview"
             class="hover:underline px-4 py-1 rounded-lg border border-gray-700"
-            :href="item?.url"
+            :href="item?._path"
             >Learn more</a
           >
         </div>

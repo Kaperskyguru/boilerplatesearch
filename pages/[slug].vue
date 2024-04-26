@@ -74,12 +74,12 @@
               >
                 <Boilerplate
                   :item="boilerplate"
-                  v-for="(boilerplate, i) in featuredBoilerplates"
+                  v-for="(boilerplate, i) in featured"
                   :key="i"
                 />
                 <Boilerplate
                   :item="boilerplate"
-                  v-for="(boilerplate, i) in boilerplates"
+                  v-for="(boilerplate, i) in notFeatured"
                   :key="i"
                 />
               </div>
@@ -94,9 +94,6 @@
   <script setup>
 import Boilerplate from "../components/Boilerplate.vue";
 const boilerplates = ref([]);
-const featuredBoilerplates = ref([]);
-const trending = ref([]);
-const popular = ref([]);
 const search = ref("");
 
 const tag = computed(() => {
@@ -105,15 +102,21 @@ const tag = computed(() => {
 });
 
 async function allBoilerplates() {
-  const all = await queryContent("boilerplates")
-    .where({ tags: { $icontains: useRoute().params?.slug } })
-    .find();
+  const { data } = await useAsyncData("boilerplates-" + tag.value, () =>
+    queryContent("boilerplates")
+      .where({ tags: { $icontains: useRoute().params?.slug } })
+      .find()
+  );
 
-  boilerplates.value = all;
+  boilerplates.value = data.value;
 }
 
 await allBoilerplates();
 
+const featured = computed(() => boilerplates.value.filter((b) => b.isFeatured));
+const notFeatured = computed(() =>
+  boilerplates.value.filter((b) => !b.isFeatured)
+);
 function onFilter(filter) {
   console.log(filter);
 }

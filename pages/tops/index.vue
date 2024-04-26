@@ -35,16 +35,17 @@
 
 <script setup>
 const featuredBoilerplates = ref([]);
-const boilerplates = await queryContent("boilerplates")
-  .where({ isFeatured: true })
-  .limit(4)
-  .find();
-featuredBoilerplates.value = boilerplates;
+const { data: boilerplates } = await useAsyncData("featuredBoilerplates", () =>
+  queryContent("boilerplates").where({ isFeatured: true }).limit(4).find()
+);
+featuredBoilerplates.value = boilerplates.value;
 
-const allBoilerplates = await queryContent("boilerplates").find();
+const { data: allBoilerplates } = await useAsyncData("boilerplates", () =>
+  queryContent("boilerplates").find()
+);
 
 const group = computed(() => {
-  return allBoilerplates.reduce(function (r, a) {
+  return allBoilerplates.value.reduce(function (r, a) {
     const key = a.tags[0];
     r.push(key);
     return [...new Set(r)];

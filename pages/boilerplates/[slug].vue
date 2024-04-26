@@ -1,24 +1,22 @@
 <template>
   <main class="pt-10 pb-16 lg:pt-16 lg:pb-24 bg-black antialiased">
-    <div class="mx-auto flex justify-center max-w-screen-xl">
+    <!-- <div class="mx-auto flex justify-center max-w-screen-xl">
       <header class="mb-4 pt-4 lg:mb-6 not-format">
         <h1
           class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white"
         >
-          {{ `Top ${tag} SaaS Boilerplates (2024)` }}
+          {{ `Top  SaaS Boilerplates (2024)` }}
         </h1>
         <p>
-          Discover the top ranking {{ tag }} SaaS boilerplates for your next
-          SaaS project and startups. Ranking are based on lots of features such
-          as Authentication, technology, clean code, key features, etc
+          Discover the top ranking SaaS boilerplates for your next SaaS project
+          and startups. Ranking are based on lots of features such as
+          Authentication, technology, clean code, key features, etc
         </p>
       </header>
-    </div>
+    </div> -->
 
     <div
       class="flex justify-between px-4 mx-auto max-w-screen-xl border-b border-gray-900"
-      v-for="(boilerplate, i) in allBoilerplates"
-      :key="i"
     >
       <div
         id="article"
@@ -88,69 +86,54 @@
     </div>
   </main>
 </template>
-  
-  <script setup>
+    
+    <script setup>
 const featuredBoilerplates = ref([]);
+const route = useRoute();
 const { data: featured } = await useAsyncData("featuredBoilerplates", () =>
   queryContent("boilerplates").where({ isFeatured: true }).limit(4).find()
 );
 featuredBoilerplates.value = featured.value;
 
-const slug = useRoute().params?.slug;
-const allSlug = slug.split("top-")[1];
-const tag = allSlug.split("-saas-boilerplates")[0];
-
-const { data: allBoilerplates } = await useAsyncData(
-  "Boilerplates-" + tag,
-  () =>
-    queryContent("boilerplates")
-      .where({ tags: { $icontains: tag } })
-      .find()
+const { data: boilerplate } = await useAsyncData(
+  "boilerplate-" + route.params?.slug,
+  () => queryContent(`boilerplates/${useRoute().params?.slug}`).findOne()
 );
 
-// const group = computed(() => {
-//   return allBoilerplates.reduce(function (r, a) {
-//     const key = a.tags[0];
-//     r[key] = r[key] || [];
-//     r[key].push(a);
-//     return r;
-//   }, Object.create(null));
-// });
-
 const link = (url) => {
-  if (url.includes("?"))
+  if (url?.includes("?"))
     return `${url}&utm_campaign=homepage&utm_medium=BoilerplateSearch&utm_source=boilerplatesearch.com`;
   return `${url}?utm_campaign=homepage&utm_medium=BoilerplateSearch&utm_source=boilerplatesearch.com`;
 };
 
 useHead({
-  title: `Top ${tag} SaaS Boilerplates (${new Date().getFullYear()})`,
+  title: `${boilerplate.value?.title} SaaS Boilerplates - BoilerplateSearch`,
   meta: [
     {
       hid: "keywords",
       name: "keywords",
-      content: `SaaS, SaaS boilerplates`,
+      content: `SaaS, SaaS boilerplates, ${boilerplate.value?.tags?.join(",")}`,
     },
     {
       hid: "description",
       name: "description",
-      content: `Discover the top ranking ${tag} SaaS boilerplates for your next SaaS project and startups. Ranking are based on lots of features such as Authentication, technology, clean code, key features, etc`,
+      content: `${boilerplate.value?.description}`,
     },
 
     {
       hid: "og:title",
       property: "og:title",
-      content: `Top ${tag} SaaS Boilerplates (${new Date().getFullYear()})`,
+      content: `${boilerplate.value?.title} SaaS Boilerplate - BoilerplateSearch`,
     },
     {
       hid: "og:description",
       property: "og:description",
-      content: `Discover the top ranking ${tag} SaaS boilerplates for your next SaaS project and startups. Ranking are based on lots of features such as Authentication, technology, clean code, key features, etc`,
+      content: `${boilerplate.value?.description}`,
     },
     {
       hid: "og:image",
       property: "og:image",
-      content: `/img/top.png`,
+      content: `/img/${boilerplate.value?.image}`,
     },
     {
       hid: "og:type",
@@ -160,7 +143,7 @@ useHead({
     {
       hid: "og:url",
       property: "og:url",
-      content: `/tops/${useRoute().params?.slug}`,
+      content: `/boilerplates/${useRoute().params?.slug}`,
     },
     {
       hid: "og:image:width",
@@ -180,8 +163,8 @@ useHead({
   ],
 });
 </script>
-  
-  <style>
+    
+    <style>
 div#article p {
   @apply py-3 text-lg;
 }
