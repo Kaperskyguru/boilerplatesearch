@@ -19,5 +19,5 @@ isTrending: true
 shouldWriteReview: false
 isFeatured: true
 url: https://www.shipthat.app/?via=solomon
-image: turbostart.png
+image: shipthatapp.jpg
 ---
