@@ -20,6 +20,6 @@ isPopular: false
 isTrending: false
 shouldWriteReview: false
 isFeatured: false
-url: https://full-stack-kit.lemonsqueezy.com?aff=b6wWP
+url: https://www.full-stack-kit.dev/en?aff=b6wWP
 image: fullstackkit.png
 ---
