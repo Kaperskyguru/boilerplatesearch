@@ -1,7 +1,7 @@
 ---
 title: "BuilderKit"
 description: "NextJS AI SaaS Boilerplate with Landing pages, Waitlist Pages, Auth pages, Auth, Payments, Database, Mails, Customer Support, Admin Dashboard and 10 Production Ready AI SaaS Apps"
-price: "Free"
+price: "$49 - $99"
 tags: ["NextJS", "AI SaaS", "AI", "Demo Tools", "Wrappers"]
 isPopular: false
 isTrending: true
