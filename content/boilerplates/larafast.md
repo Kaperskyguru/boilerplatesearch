@@ -6,7 +6,7 @@ tags: ["Laravel", "Payments", "Social Auth", "Admin", "SEO", "Themes"]
 isPopular: true
 isTrending: false
 shouldWriteReview: false
-isFeatured: true
+isFeatured: false
 url: https://larafast.com?aff=b6wWP
 image: larafast.png
 ---

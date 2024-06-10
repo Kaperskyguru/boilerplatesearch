@@ -17,10 +17,10 @@ tags:
     "MDX",
     "1-click deploy",
   ]
-isPopular: false
+isPopular: true
 isTrending: false
 shouldWriteReview: false
-isFeatured: true
+isFeatured: false
 url: https://shipixen.com?aff=b6wWP
 image: shipixen.png
 ---
