@@ -1,7 +1,7 @@
 ---
 title: "NuxifySaaS"
 description: "Nuxt SaaS Boilerplate with ready-to-go components for Payments, Auth, Admin, Blog, SEO, Database, Mailing, Templating system(Landing pages, Dashboards) and everything you need to ship your SaaS in days!."
-price: "$99.99 - $499.99"
+price: "$99 - $499"
 tags:
   [
     "Nuxt.js",
