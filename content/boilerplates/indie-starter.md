@@ -8,6 +8,6 @@ isPopular: false
 isTrending: false
 shouldWriteReview: false
 isFeatured: false
-url: https://checkout.indie-starter.dev
+url: https://indie-starter.dev?aff=b6wWP
 image: indiestarter.png
 ---
