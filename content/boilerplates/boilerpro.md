@@ -6,7 +6,6 @@ tags:
   [
     "Next.js",
     "AWS",
-    "NextJS",
     "Typescript",
     "Authentication",
     "Payments",
