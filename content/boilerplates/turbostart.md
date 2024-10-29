@@ -17,7 +17,7 @@ tags:
 isPopular: true
 isTrending: true
 shouldWriteReview: false
-isFeatured: true
+isFeatured: false
 url: https://turbost.art/
 image: turbostart.png
 ---
