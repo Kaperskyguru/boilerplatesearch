@@ -18,6 +18,6 @@ isPopular: false
 isTrending: false
 shouldWriteReview: false
 isFeatured: false
-url: https://supastarter.dev?aff=b6wWP
+url: https://supastarter.dev?atp=j3HOZd
 image: supastarter.png
 ---
