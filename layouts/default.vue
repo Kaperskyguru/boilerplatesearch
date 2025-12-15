@@ -1,19 +1,6 @@
 <template>
   <span>
-    <div
-      style="background: #0d7261; padding: 20px; display: flex"
-      class="fixed z-20 w-full pb-10 justify-center"
-    >
-      <h2 style="font-size: 1.3rem; font-weight: bold; color: #fff">
-        Pre-order my new Nuxt SaaS Boilerplate at 50% discount.
-        <a
-          class="underline text-gray-300;"
-          target="_blank"
-          href="https://nuxifysaas.com?utm_source=BoilerplateSearch"
-          >Click here for more details</a
-        >
-      </h2>
-    </div>
+   
     <main class="bg-black w-full text-white md:pt-20 pt-36">
       <div class="flex flex-col items-center justify-center pt-10">
         <div class="flex items-center">
