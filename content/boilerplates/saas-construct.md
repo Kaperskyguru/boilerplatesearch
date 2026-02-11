@@ -9,7 +9,7 @@ tags: [
 "Contentful",
 "Sanity",
 "Vercel",
-"Netlify"]
+"Netlify",]
 isPopular: false
 isTrending: false
 shouldWriteReview: false

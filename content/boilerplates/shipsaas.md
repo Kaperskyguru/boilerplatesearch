@@ -4,7 +4,7 @@ description: "Ship-saas is a full-stack Next.js + AI boilerplate that helps deve
 price: "E299 - E1,997"
 tags:
   [
-"nextjs", "css", "tailwind", "supabase", "AI integration", "javascript", "react", "typescript", "blog", "CLI", "postgresql", "data fetching", "tests", "theme", "dark mode", "responsive design", "stripe", "users"
+"nextjs", "css", "tailwind", "supabase", "AI integration", "javascript", "react", "typescript", "blog", "CLI", "postgresql", "data fetching", "tests", "theme", "dark mode", "responsive design", "stripe", "users",
   ]
 isPopular: false
 isTrending: false

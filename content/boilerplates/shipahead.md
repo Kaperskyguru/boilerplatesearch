@@ -4,7 +4,7 @@ description: "Skip the setup and start building what matters with a ready-to-shi
 price: "$69 - $120"
 tags:
   [
-"Nuxt.js", "Tailwind", "Supabase", "Stripe", "OpenRouter AI", "Auth", "Better Auth", "Social Auth", "Admin", "SEO", "Payments", "Landing page", "i18n", "Dashboards", "Storage", "Blog", "Emails", "Resend", "Drizzle ORM", "PostgreSQL", "Customizable UI"
+"Nuxt.js", "Tailwind", "Supabase", "Stripe", "OpenRouter AI", "Auth", "Better Auth", "Social Auth", "Admin", "SEO", "Payments", "Landing page", "i18n", "Dashboards", "Storage", "Blog", "Emails", "Resend", "Drizzle ORM", "PostgreSQL", "Customizable UI",
   ]
 isPopular: false
 isTrending: false

@@ -4,7 +4,7 @@ description: "A complete React Native boilerplate with authentication, database,
 price: "$69 - $149"
 tags:
   [
-"iOS", "Android", "React Native", "Expo"
+"iOS", "Android", "React Native", "Expo",
   ]
 isPopular: false
 isTrending: false

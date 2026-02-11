@@ -4,7 +4,7 @@ description: "The Radixweb Enterprise-Grade Microservices Boilerplate is a produ
 price: "Free"
 tags:
   [
-".NET","enterprise" ,"boilerplate", "angular",  "JWT authentication", "authentication", "RBAC", "role-based access control", "microservices", "notification", "frontend", "profile management", "user management"
+".NET","enterprise" ,"boilerplate", "angular",  "JWT authentication", "authentication", "RBAC", "role-based access control", "microservices", "notification", "frontend", "profile management", "user management",
   ]
 isPopular: false
 isTrending: false

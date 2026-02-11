@@ -4,7 +4,7 @@ description: "NativeAppTemplate is a production-ready iOS & Android app with use
 price: "$149 - $549"
 tags:
   [
-"iOS","Swift", "SwiftUI","Android","Kotlin","Jetpack Compose","Rails", "NFC"
+"iOS","Swift", "SwiftUI","Android","Kotlin","Jetpack Compose","Rails", "NFC",
   ]
 isPopular: false
 isTrending: false

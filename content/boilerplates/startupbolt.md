@@ -4,7 +4,7 @@ description: "A Next.js boilerplate designed to help entrepreneurs launch produc
 price: "$197 - $347"
 tags:
   [
-"Next.js", "Tailwind CSS", "React", "Stripe", "Landing Pages", "Payments", "SEO", "Authentication" , "Boilerplate", "Shadcn", "SaaSBoilerplate", "Lemon Squeezy", "Lifetime access", "Supabase"
+"Next.js", "Tailwind CSS", "React", "Stripe", "Landing Pages", "Payments", "SEO", "Authentication" , "Boilerplate", "Shadcn", "SaaSBoilerplate", "Lemon Squeezy", "Lifetime access", "Supabase",
   ]
 isPopular: false
 isTrending: false

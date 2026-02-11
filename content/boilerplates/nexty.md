@@ -4,7 +4,7 @@ description: "A production-ready Next.js and Supabase starter template for build
 price: "Free - $188"
 tags:
   [
-"SaaS Template", "SaaS Boilerplate"
+"SaaS Template", "SaaS Boilerplate",
   ]
 isPopular: false
 isTrending: false

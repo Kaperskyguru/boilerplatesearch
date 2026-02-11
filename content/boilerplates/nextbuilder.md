@@ -4,7 +4,7 @@ description: "The complete Next.js boilerplate for building multi-tenant SaaS pl
 price: "$349 - $499"
 tags:
   [
-"Nextjs","Saas","Boilerplate"
+"Nextjs","Saas","Boilerplate",
   ]
 isPopular: false
 isTrending: false

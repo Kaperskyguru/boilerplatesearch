@@ -4,7 +4,7 @@ description: "Frontend, Backend and Infra - all in one. Save time and money with
 price: "$180 - $220"
 tags:
   [
-"serverless", "aws", "saas"
+"serverless", "aws", "saas",
   ]
 isPopular: false
 isTrending: false

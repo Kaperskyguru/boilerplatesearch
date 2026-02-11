@@ -4,7 +4,7 @@ description: "RapDv is a low-code framework for quickly creating web application
 price: "Free"
 tags:
   [
-"Node.js","framework","typescript","low-code","node.js.rapid.rapdv.authentication","bootstrap"
+"Node.js","framework","typescript","low-code","node.js.rapid.rapdv.authentication","bootstrap",
   ]
 isPopular: false
 isTrending: false

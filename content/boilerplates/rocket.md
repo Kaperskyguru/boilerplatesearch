@@ -4,7 +4,7 @@ description: "The Beginner's Ultimate Boilerplate to Accelerate Your SaaS 🚀"
 price: "$149 - $249"
 tags:
   [
-"nextjs", "clerk", "supabase", "stripe"
+"nextjs", "clerk", "supabase", "stripe",
   ]
 isPopular: false
 isTrending: false

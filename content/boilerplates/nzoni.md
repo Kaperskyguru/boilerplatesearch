@@ -4,7 +4,7 @@ description: "Nzoni.app accelerates SaaS development with an Angular-based boile
 price: "$99 - $249"
 tags:
   [
-"Angular", "Nest.js", "Firebase","PostgreSQL", "Node","express","MongoDB"
+"Angular", "Nest.js", "Firebase","PostgreSQL", "Node","express","MongoDB",
   ]
 isPopular: false
 isTrending: false
