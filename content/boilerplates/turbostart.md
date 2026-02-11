@@ -1,23 +1,16 @@
 ---
-title: "TurboStart"
-description: "The up-to-date Next.js boilerplate you need to launch your next project. Get your ideas out of your head and into the world."
+title: "TurboStarter"
+description: "The Next.js, React Native (Expo) and WXT (Vite) SaaS production-ready starter kit. Launch your web, mobile app and browser extension with one-click boilerplate."
 price: "$117 - $137"
 tags:
   [
     "Next.js",
-    "Payments",
-    "Auth",
-    "Database",
-    "SEO",
-    "Landing Page",
-    "Emails",
-    "Analytics",
-    "Components",
+"saas","starterkit","boilerplate","ai","web","mobile","extension"
   ]
 isPopular: true
 isTrending: true
 shouldWriteReview: false
 isFeatured: false
-url: https://turbost.art/
+url: https://turbostarter.dev?aff=b6wWP
 image: turbostart.png
 ---
