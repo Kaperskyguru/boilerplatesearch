@@ -4,7 +4,7 @@ description: "The template ships with a fictional brand (â€œParadox Innovationsâ
 price: "Free"
 tags:
   [
-"SvelteKit", "SaaS starter", "Supabase", "Auth", "Stripe", "subscriptions", "Stripe webhooks", "one-time purchases", "entitlements", "admin dashboard", "Cloudflare Turnstile", "Cloudflare R2 downloads", "Cloudflare Pages deploy", "SaaS template", "boilerplate", "Signal Lynx", "SignalLynx", "Signal-Lynx", "KeyCommander", "Key Commander", "Key-Commander", "NightShiftNation".
+"SvelteKit", "SaaS starter", "Supabase", "Auth", "Stripe", "subscriptions", "Stripe webhooks", "one-time purchases", "entitlements", "admin dashboard", "Cloudflare Turnstile", "Cloudflare R2 downloads", "Cloudflare Pages deploy", "SaaS template", "boilerplate", "Signal Lynx", "SignalLynx", "Signal-Lynx", "KeyCommander", "Key Commander", "Key-Commander", NightShiftNation
   ]
 isPopular: false
 isTrending: false
