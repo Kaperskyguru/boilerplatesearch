@@ -156,13 +156,26 @@ export async function deletePendingImage(id: string, ext: string) {
 }
 
 export const MAX_PENDING_IMAGES = 500;
+const PENDING_NAME_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.(png|jpg|webp)$/i;
 
-export async function countPendingImages(): Promise<number> {
+// Keeps the pending folder under MAX_PENDING_IMAGES by deleting the oldest
+// unpaid images. Rejecting new submissions instead would let anonymous traffic
+// lock real buyers out; an evicted buyer still gets listed (placeholder image).
+export async function makeRoomForPendingImage() {
+  const dir = pendingDir();
+  let names: string[] = [];
   try {
-    return (await fs.readdir(pendingDir())).length;
+    names = (await fs.readdir(dir)).filter((n) => PENDING_NAME_RE.test(n));
   } catch {
-    return 0;
+    return;
   }
+  const excess = names.length - (MAX_PENDING_IMAGES - 1);
+  if (excess <= 0) return;
+  const withTimes = await Promise.all(
+    names.map(async (name) => ({ name, at: (await fs.stat(join(dir, name)).catch(() => null))?.mtimeMs ?? 0 }))
+  );
+  withTimes.sort((x, y) => x.at - y.at);
+  await Promise.all(withTimes.slice(0, excess).map((f) => fs.rm(join(dir, f.name), { force: true })));
 }
 
 // Drops images whose checkout was abandoned more than a week ago.

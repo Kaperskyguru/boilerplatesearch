@@ -4,16 +4,16 @@ import { createCheckout } from "~/server/utils/lemonsqueezy";
 import {
   MAX_IMAGE_BYTES,
   imageExtension,
-  MAX_PENDING_IMAGES,
-  countPendingImages,
+  makeRoomForPendingImage,
   prunePendingImages,
   savePendingImage,
   validateFields,
 } from "~/server/utils/submissions";
 
-// Simple per-IP limit so the form cannot be used to flood disk or the Lemon API.
+// Per-IP limit so the form cannot be used to flood disk or the Lemon API.
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 const RATE_MAX = 5;
+const MAX_TRACKED_IPS = 10_000;
 const recent = new Map<string, number[]>();
 
 function rateLimited(ip: string): boolean {
@@ -24,9 +24,31 @@ function rateLimited(ip: string): boolean {
     return true;
   }
   hits.push(now);
+  recent.delete(ip); // re-insert so Map order stays oldest-activity first
   recent.set(ip, hits);
-  if (recent.size > 10_000) recent.clear(); // bound memory
+  if (recent.size > MAX_TRACKED_IPS) {
+    // Drop the least recently active IPs; never wipe everyone's counters.
+    for (const key of recent.keys()) {
+      if (recent.size <= MAX_TRACKED_IPS) break;
+      recent.delete(key);
+    }
+  }
   return false;
+}
+
+// X-Forwarded-For is client-controlled on the left. A trusted proxy appends the
+// address it actually saw, so count TRUSTED_PROXY_HOPS entries from the right
+// (default 1 = one proxy in front, e.g. Coolify/Traefik). Set 0 if Node is
+// reached directly with no proxy.
+function clientIp(event: any): string {
+  const hops = Number(process.env.TRUSTED_PROXY_HOPS ?? 1);
+  const xff = getHeader(event, "x-forwarded-for");
+  if (hops > 0 && xff) {
+    const list = xff.split(",").map((v) => v.trim()).filter(Boolean);
+    const ip = list[list.length - hops];
+    if (ip) return ip;
+  }
+  return event.node.req.socket.remoteAddress || "unknown";
 }
 
 // Validates a submission, parks its image on disk, and returns a Lemon Squeezy
@@ -40,7 +62,7 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 413, statusMessage: "Image must be 2 MB or smaller." });
   }
 
-  if (rateLimited(getRequestIP(event, { xForwardedFor: true }) || "unknown")) {
+  if (rateLimited(clientIp(event))) {
     throw createError({ statusCode: 429, statusMessage: "Too many submissions. Please try again in a few minutes." });
   }
 
@@ -68,10 +90,7 @@ export default defineEventHandler(async (event) => {
   // The slug is resolved against GitHub only in the webhook, after payment.
   const id = randomUUID();
   await prunePendingImages().catch((err) => console.error("[submit] prune failed", err));
-  if ((await countPendingImages()) >= MAX_PENDING_IMAGES) {
-    console.error("[submit] pending image cap reached");
-    throw createError({ statusCode: 503, statusMessage: "Submissions are busy right now. Please try again later." });
-  }
+  await makeRoomForPendingImage().catch((err) => console.error("[submit] eviction failed", err));
   await savePendingImage(id, ext, image);
 
   try {
