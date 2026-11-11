@@ -18,7 +18,7 @@
       <div class="shadow-lg border-b border-gray-700 w-full h-52">
         <img
           class="w-full h-full object-fill"
-          :src="`/img/${props.item?.image}`"
+          :src="imageSrc(props.item?.image)"
           :alt="item?.title"
           loading="lazy"
           decoding="async"

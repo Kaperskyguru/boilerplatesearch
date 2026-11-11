@@ -14,6 +14,16 @@ export function paymentConfig() {
     deployHookUrl: env.DEPLOY_HOOK_URL || "",
     siteUrl: (env.SITE_URL || "https://boilerplatesearch.com").replace(/\/+$/, ""),
     submissionsDir: env.SUBMISSIONS_DIR || ".data/submissions",
+    r2AccountId: env.R2_ACCOUNT_ID || "",
+    r2AccessKeyId: env.R2_ACCESS_KEY_ID || "",
+    r2SecretAccessKey: env.R2_SECRET_ACCESS_KEY || "",
+    r2Bucket: env.R2_BUCKET || "",
+    // Folder inside the (shared) bucket that holds everything for this site.
+    r2Folder: (env.R2_FOLDER || "boilerplatesearch").replace(/^\/+|\/+$/g, ""),
+    // Public base URL of the bucket (r2.dev or custom domain), no trailing slash.
+    r2PublicUrl: (env.R2_PUBLIC_URL || "").replace(/\/+$/, ""),
+    // Only for tests against an S3-compatible stand-in.
+    r2Endpoint: (env.R2_ENDPOINT || "").replace(/\/+$/, ""),
   };
 }
 

@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { paymentConfig, variantForTier, type Tier } from "~/server/utils/config";
 import { createCheckout } from "~/server/utils/lemonsqueezy";
+import { pendingKey, r2Enabled, r2Put } from "~/server/utils/r2";
 import {
   MAX_IMAGE_BYTES,
   imageExtension,
@@ -89,10 +90,20 @@ export default defineEventHandler(async (event) => {
 
   // The slug is resolved against GitHub only in the webhook, after payment.
   const id = randomUUID();
-  await prunePendingImages().catch((err) => console.error("[submit] prune failed", err));
-  // If the folder cannot be trimmed, fail the request rather than grow past the cap.
-  await makeRoomForPendingImage();
-  await savePendingImage(id, ext, image);
+  if (r2Enabled()) {
+    // Object storage: survives restarts; a lifecycle rule expires unpaid uploads.
+    try {
+      await r2Put(pendingKey(id, ext)!, image, ext);
+    } catch (err) {
+      console.error("[submit] R2 upload failed", err);
+      throw createError({ statusCode: 502, statusMessage: "Could not save your image. Please try again." });
+    }
+  } else {
+    await prunePendingImages().catch((err) => console.error("[submit] prune failed", err));
+    // If the folder cannot be trimmed, fail the request rather than grow past the cap.
+    await makeRoomForPendingImage();
+    await savePendingImage(id, ext, image);
+  }
 
   try {
     const url = await createCheckout({
