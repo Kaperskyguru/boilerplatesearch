@@ -154,4 +154,12 @@ export default defineNuxtConfig({
   },
 
   modules: ["@nuxt/content"],
+
+  // Card images change rarely: let browsers reuse them instead of re-checking
+  // every image on each visit.
+  nitro: {
+    routeRules: {
+      "/img/**": { headers: { "cache-control": "public, max-age=86400" } },
+    },
+  },
 });
