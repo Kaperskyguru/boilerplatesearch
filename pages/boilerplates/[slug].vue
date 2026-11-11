@@ -32,7 +32,7 @@
         <div class="shadow-lg border-b border-gray-700 my-4 w-full h-auto">
           <img
             class="w-full h-full object-fill"
-            :src="`/img/${boilerplate?.image}`"
+            :src="imageSrc(boilerplate?.image)"
             :alt="boilerplate?.title"
           />
         </div>
@@ -145,7 +145,7 @@ useHead({
     {
       hid: "og:image",
       property: "og:image",
-      content: `/img/${boilerplate.value?.image}`,
+      content: imageSrc(boilerplate.value?.image),
     },
     {
       hid: "og:type",

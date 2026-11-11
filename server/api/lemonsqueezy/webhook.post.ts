@@ -1,6 +1,7 @@
 import { paymentConfig, tierForVariant } from "~/server/utils/config";
 import { commitFiles } from "~/server/utils/github";
 import { isValidSignature } from "~/server/utils/lemonsqueezy";
+import { listingKey, pendingKey, r2Copy, r2Delete, r2Enabled, r2PublicUrl } from "~/server/utils/r2";
 import {
   FALLBACK_IMAGE,
   buildMarkdown,
@@ -57,23 +58,37 @@ export default defineEventHandler(async (event) => {
     return { ok: true, slug, alreadyPublished: true };
   }
 
+  // Image: prefer R2 (copy pending -> permanent key, card loads it from R2).
+  // Fall back to the legacy disk upload (committed into the repo), then to the
+  // placeholder so a paid listing is never lost over a missing image.
   const ext = String(custom.image_ext || "");
-  const image = ["png", "jpg", "webp"].includes(ext) ? await readPendingImage(custom.submission_id, ext) : null;
-  const imageFile = image ? `${slug}.${ext}` : FALLBACK_IMAGE;
-  if (!image) log("pending image missing — publishing with placeholder; replace it manually", custom.submission_id);
+  const validExt = ["png", "jpg", "webp"].includes(ext);
+  let imageRef = FALLBACK_IMAGE;
+  let repoImage: Buffer | null = null;
+  const pendingR2 = r2Enabled() && validExt ? pendingKey(custom.submission_id, ext) : null;
+  if (pendingR2) {
+    const to = listingKey(slug, ext);
+    if (to && (await r2Copy(pendingR2, to, ext))) imageRef = r2PublicUrl(to);
+  }
+  if (imageRef === FALLBACK_IMAGE && validExt) {
+    repoImage = await readPendingImage(custom.submission_id, ext);
+    if (repoImage) imageRef = `${slug}.${ext}`;
+  }
+  if (imageRef === FALLBACK_IMAGE) log("pending image missing — publishing with placeholder; replace it manually", custom.submission_id);
 
   const files = [
     {
       path: markdownPath(slug),
-      content: Buffer.from(buildMarkdown(fields, { tier, image: imageFile, orderId }), "utf8"),
+      content: Buffer.from(buildMarkdown(fields, { tier, image: imageRef, orderId }), "utf8"),
     },
   ];
-  if (image) files.push({ path: imagePath(imageFile), content: image });
+  if (repoImage) files.push({ path: imagePath(imageRef), content: repoImage });
 
   const sha = await commitFiles(files, `feat: add ${fields.title} (paid ${tier}, order ${orderId})`);
   log(`published ${slug} (${tier}) in ${sha}`);
 
-  if (image) await deletePendingImage(custom.submission_id, ext).catch(() => {});
+  if (repoImage) await deletePendingImage(custom.submission_id, ext).catch(() => {});
+  if (pendingR2) await r2Delete(pendingR2).catch(() => {}); // the lifecycle rule would also clear it
 
   if (cfg.deployHookUrl) {
     try {

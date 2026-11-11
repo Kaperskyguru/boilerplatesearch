@@ -34,7 +34,7 @@
         <div class="shadow-lg border-b border-gray-700 my-4 w-full h-auto">
           <img
             class="w-full h-full object-fill"
-            :src="`/img/${boilerplate?.image}`"
+            :src="imageSrc(boilerplate?.image)"
             :alt="boilerplate?.title"
           />
         </div>
