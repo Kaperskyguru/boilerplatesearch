@@ -45,6 +45,10 @@ export function validateFields(input: Record<string, string>): { fields?: Submis
   if (description.length < 20 || description.length > 300)
     return { error: "Description must be 20–300 characters." };
   if (!price || price.length > 30) return { error: "Price is required (e.g. $199 or Free)." };
+  // Descriptions are rendered with v-html on listing pages, so no markup is
+  // accepted from submitters.
+  if ([title, description, price].some((v) => /[<>]/.test(v)))
+    return { error: "Name, description and price cannot contain < or >." };
   if (tags.length < 1 || tags.length > 10) return { error: "Add 1–10 tags, separated by commas." };
   if (tags.some((t) => t.length > 30 || !TAG_RE.test(t)))
     return { error: "Tags may only use letters, numbers, spaces and . + # _ - (max 30 characters each)." };
@@ -149,6 +153,16 @@ export async function readPendingImage(id: string, ext: string): Promise<Buffer 
 export async function deletePendingImage(id: string, ext: string) {
   const file = pendingFile(id, ext);
   if (file) await fs.rm(file, { force: true });
+}
+
+export const MAX_PENDING_IMAGES = 500;
+
+export async function countPendingImages(): Promise<number> {
+  try {
+    return (await fs.readdir(pendingDir())).length;
+  } catch {
+    return 0;
+  }
 }
 
 // Drops images whose checkout was abandoned more than a week ago.

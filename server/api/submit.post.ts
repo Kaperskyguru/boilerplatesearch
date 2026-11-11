@@ -4,18 +4,44 @@ import { createCheckout } from "~/server/utils/lemonsqueezy";
 import {
   MAX_IMAGE_BYTES,
   imageExtension,
+  MAX_PENDING_IMAGES,
+  countPendingImages,
   prunePendingImages,
-  resolveSlug,
   savePendingImage,
   validateFields,
 } from "~/server/utils/submissions";
 
+// Simple per-IP limit so the form cannot be used to flood disk or the Lemon API.
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+const RATE_MAX = 5;
+const recent = new Map<string, number[]>();
+
+function rateLimited(ip: string): boolean {
+  const now = Date.now();
+  const hits = (recent.get(ip) || []).filter((t) => now - t < RATE_WINDOW_MS);
+  if (hits.length >= RATE_MAX) {
+    recent.set(ip, hits);
+    return true;
+  }
+  hits.push(now);
+  recent.set(ip, hits);
+  if (recent.size > 10_000) recent.clear(); // bound memory
+  return false;
+}
+
 // Validates a submission, parks its image on disk, and returns a Lemon Squeezy
 // checkout URL. Nothing is published here; the webhook publishes after payment.
 export default defineEventHandler(async (event) => {
-  const length = Number(getHeader(event, "content-length") || 0);
-  if (length > MAX_IMAGE_BYTES + 64 * 1024) {
+  // Require a declared length: Node reads at most that many bytes, so the cap
+  // holds. Chunked uploads (no Content-Length) would bypass it.
+  const lengthHeader = getHeader(event, "content-length");
+  if (!lengthHeader) throw createError({ statusCode: 411, statusMessage: "Content-Length required." });
+  if (Number(lengthHeader) > MAX_IMAGE_BYTES + 64 * 1024) {
     throw createError({ statusCode: 413, statusMessage: "Image must be 2 MB or smaller." });
+  }
+
+  if (rateLimited(getRequestIP(event, { xForwardedFor: true }) || "unknown")) {
+    throw createError({ statusCode: 429, statusMessage: "Too many submissions. Please try again in a few minutes." });
   }
 
   const parts = (await readMultipartFormData(event)) || [];
@@ -39,11 +65,13 @@ export default defineEventHandler(async (event) => {
   const ext = imageExtension(image);
   if (!ext) throw createError({ statusCode: 422, statusMessage: "Image must be PNG, JPG or WebP." });
 
-  // Fails fast on a name that cannot get a slug; the webhook re-resolves at publish time.
-  await resolveSlug(fields.title);
-
+  // The slug is resolved against GitHub only in the webhook, after payment.
   const id = randomUUID();
   await prunePendingImages().catch((err) => console.error("[submit] prune failed", err));
+  if ((await countPendingImages()) >= MAX_PENDING_IMAGES) {
+    console.error("[submit] pending image cap reached");
+    throw createError({ statusCode: 503, statusMessage: "Submissions are busy right now. Please try again later." });
+  }
   await savePendingImage(id, ext, image);
 
   try {
