@@ -22,3 +22,6 @@ logs
 .env
 .env.*
 !.env.example
+
+# Local browser-tool state (contains a local access token)
+.gstack
