@@ -11,5 +11,5 @@ isTrending: false
 shouldWriteReview: false
 isFeatured: false
 url: https://saascore.com/?via=kap
-image: saascore.png
+image: sasscore.png
 ---
