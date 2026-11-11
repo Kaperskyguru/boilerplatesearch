@@ -90,7 +90,8 @@ export default defineEventHandler(async (event) => {
   // The slug is resolved against GitHub only in the webhook, after payment.
   const id = randomUUID();
   await prunePendingImages().catch((err) => console.error("[submit] prune failed", err));
-  await makeRoomForPendingImage().catch((err) => console.error("[submit] eviction failed", err));
+  // If the folder cannot be trimmed, fail the request rather than grow past the cap.
+  await makeRoomForPendingImage();
   await savePendingImage(id, ext, image);
 
   try {
