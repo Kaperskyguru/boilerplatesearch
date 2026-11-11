@@ -20,6 +20,8 @@
           class="w-full h-full object-fill"
           :src="`/img/${props.item?.image}`"
           :alt="item?.title"
+          loading="lazy"
+          decoding="async"
         />
       </div>
       <div class="p-5">
