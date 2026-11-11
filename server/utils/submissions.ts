@@ -45,6 +45,10 @@ export function validateFields(input: Record<string, string>): { fields?: Submis
   if (description.length < 20 || description.length > 300)
     return { error: "Description must be 20–300 characters." };
   if (!price || price.length > 30) return { error: "Price is required (e.g. $199 or Free)." };
+  // Descriptions are rendered with v-html on listing pages, so no markup is
+  // accepted from submitters.
+  if ([title, description, price].some((v) => /[<>]/.test(v)))
+    return { error: "Name, description and price cannot contain < or >." };
   if (tags.length < 1 || tags.length > 10) return { error: "Add 1–10 tags, separated by commas." };
   if (tags.some((t) => t.length > 30 || !TAG_RE.test(t)))
     return { error: "Tags may only use letters, numbers, spaces and . + # _ - (max 30 characters each)." };
@@ -149,6 +153,29 @@ export async function readPendingImage(id: string, ext: string): Promise<Buffer 
 export async function deletePendingImage(id: string, ext: string) {
   const file = pendingFile(id, ext);
   if (file) await fs.rm(file, { force: true });
+}
+
+export const MAX_PENDING_IMAGES = 500;
+const PENDING_NAME_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.(png|jpg|webp)$/i;
+
+// Keeps the pending folder under MAX_PENDING_IMAGES by deleting the oldest
+// unpaid images. Rejecting new submissions instead would let anonymous traffic
+// lock real buyers out; an evicted buyer still gets listed (placeholder image).
+export async function makeRoomForPendingImage() {
+  const dir = pendingDir();
+  let names: string[] = [];
+  try {
+    names = (await fs.readdir(dir)).filter((n) => PENDING_NAME_RE.test(n));
+  } catch {
+    return;
+  }
+  const excess = names.length - (MAX_PENDING_IMAGES - 1);
+  if (excess <= 0) return;
+  const withTimes = await Promise.all(
+    names.map(async (name) => ({ name, at: (await fs.stat(join(dir, name)).catch(() => null))?.mtimeMs ?? 0 }))
+  );
+  withTimes.sort((x, y) => x.at - y.at);
+  await Promise.all(withTimes.slice(0, excess).map((f) => fs.rm(join(dir, f.name), { force: true })));
 }
 
 // Drops images whose checkout was abandoned more than a week ago.
