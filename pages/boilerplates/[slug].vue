@@ -97,8 +97,20 @@ featuredBoilerplates.value = featured.value;
 
 const { data: boilerplate } = await useAsyncData(
   "boilerplate-" + route.params?.slug,
-  () => queryContent(`boilerplates/${useRoute().params?.slug}`).findOne()
+  () =>
+    queryContent(`boilerplates/${useRoute().params?.slug}`)
+      .findOne()
+      .catch(() => null)
 );
+
+// A removed or mistyped listing is a 404, not a server error.
+if (!boilerplate.value?.title) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Boilerplate not found",
+    fatal: true,
+  });
+}
 
 const link = (url) => {
   if (url?.includes("?"))
