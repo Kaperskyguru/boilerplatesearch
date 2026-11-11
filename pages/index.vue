@@ -60,15 +60,12 @@
                     <div>
                       <h2 class="font-blod text-2xl">All Boilerplates</h2>
                     </div>
-                    <button
-                      data-tally-open="3xpAZ9"
-                      data-tally-emoji-text="👋"
-                      data-tally-emoji-animation="wave"
-                      data-tally-auto-close="1000"
+                    <a
+                      href="/submit"
                       class="px-4 py-3 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500"
                     >
                       Submit a Boilerplate
-                    </button>
+                    </a>
                   </div>
 
                   <div
@@ -108,15 +105,12 @@
                     <div>
                       <h2 class="font-blod text-2xl">Latest Boilerplates</h2>
                     </div>
-                    <button
-                      data-tally-open="3xpAZ9"
-                      data-tally-emoji-text="👋"
-                      data-tally-emoji-animation="wave"
-                      data-tally-auto-close="1000"
+                    <a
+                      href="/submit"
                       class="px-4 py-3 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500"
                     >
                       Submit a Boilerplate
-                    </button>
+                    </a>
                   </div>
 
                   <div
@@ -156,15 +150,12 @@
                     <div>
                       <h2 class="font-blod text-2xl">Popular Boilerplates</h2>
                     </div>
-                    <button
-                      data-tally-open="3xpAZ9"
-                      data-tally-emoji-text="👋"
-                      data-tally-emoji-animation="wave"
-                      data-tally-auto-close="1000"
+                    <a
+                      href="/submit"
                       class="px-4 py-3 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500"
                     >
                       Submit a Boilerplate
-                    </button>
+                    </a>
                   </div>
 
                   <div
@@ -204,15 +195,12 @@
                     <div>
                       <h2 class="font-blod text-2xl">Trending Boilerplates</h2>
                     </div>
-                    <button
-                      data-tally-open="3xpAZ9"
-                      data-tally-emoji-text="👋"
-                      data-tally-emoji-animation="wave"
-                      data-tally-auto-close="1000"
+                    <a
+                      href="/submit"
                       class="px-4 py-3 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500"
                     >
                       Submit a Boilerplate
-                    </button>
+                    </a>
                   </div>
 
                   <div
